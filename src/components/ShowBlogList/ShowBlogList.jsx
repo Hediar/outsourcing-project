@@ -12,7 +12,8 @@ const ShowBlogList = () => {
   const { data, isError, isLoading } = useQuery('blogLists', () => getBlogLists('진솔', page), {
     onSuccess: () => {
       setBlogList(data?.documents);
-    }
+    },
+    refetchOnWindowFocus: false
   });
 
   const [observe, unobserve] = useIntersectionObserver(() => {
@@ -29,6 +30,8 @@ const ShowBlogList = () => {
   }, []);
 
   useEffect(() => {
+    console.log(blogList);
+
     // console.log(target);
     // if (target !== null && page === 1) {
     //   console.log('0000', target);
