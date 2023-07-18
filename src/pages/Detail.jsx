@@ -33,7 +33,6 @@ const S = {
   `,
   AsideContainer: styled.div`
     display: flex;
-    background-color: green;
   `,
   Aside: styled.aside`
     padding-top: 5%;

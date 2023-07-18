@@ -16,7 +16,7 @@ const S = {
     background-color: aliceblue;
     position: fixed;
     height: 70px;
-    z-index: 2;
+    z-index: 99;
     box-sizing: border-box;
   `,
   Logo: styled.img`

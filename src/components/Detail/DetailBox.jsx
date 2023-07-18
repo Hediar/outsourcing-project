@@ -7,8 +7,13 @@ import { getPlace } from '../../api/jejuHotPlace';
 import { styled } from 'styled-components';
 import DetailInfor from './DetailInfor';
 import DetailTab from './DetailTab';
+import usePlaceData from '../../hook/usePlaceData';
+import { useDispatch, useSelector } from 'react-redux';
+import { setDetailModalOn } from '../../redux/modules/modalSlice';
 
 const DetailBox = () => {
+  const { detailModalData } = useSelector((state) => state.detailModal);
+  const dispatch = useDispatch();
   //   const target = useRef(null);
   //   const [observe, unobserve] = useIntersectionObserver(() => {
   //     // 스타일을 넣어줄거야 박스 쉐도우를.
@@ -44,13 +49,14 @@ const DetailBox = () => {
   //   }
 
   return (
-    <S.DetailBoxContainer>
-      {/* <Map /> */}
-      {/* address = {`${data.title}`} */}
-      <S.Title>이름:data.title</S.Title>
-      <S.Img src="https://blog.kakaocdn.net/dn/o1KIw/btqu9mflPY6/rGk1mM3iugV1c6jj9Z3E80/img.jpg" />
-      <DetailTab />
-    </S.DetailBoxContainer>
+    <>
+      <S.DetailCloseBtn onClick={() => dispatch(setDetailModalOn(false))}>X</S.DetailCloseBtn>
+      <S.DetailBoxContainer>
+        <S.Title>{detailModalData.title}</S.Title>
+        <S.Img src="https://blog.kakaocdn.net/dn/o1KIw/btqu9mflPY6/rGk1mM3iugV1c6jj9Z3E80/img.jpg" />
+        <DetailTab />
+      </S.DetailBoxContainer>
+    </>
   );
 };
 
@@ -62,7 +68,7 @@ const S = {
     height: 100vh;
     box-sizing: border-box;
     padding-top: 70px;
-    background-color: aliceblue;
+    background-color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -71,6 +77,18 @@ const S = {
       display: none;
     }
     z-index: 1;
+  `,
+  DetailCloseBtn: styled.button`
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    z-index: 2;
+    left: 850px;
+    top: 70px;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
   `,
   Img: styled.img`
     width: 400px;

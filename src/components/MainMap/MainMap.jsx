@@ -9,7 +9,7 @@ const MainMap = ({ list, area, category }) => {
   const [filteredData] = usePlaceData(list, area, category);
 
   useEffect(() => {
-    console.log(filteredData);
+    // console.log(filteredData);
     if (area === '전체' && category === '전체') {
       const container = document.getElementById('map');
       const options = {

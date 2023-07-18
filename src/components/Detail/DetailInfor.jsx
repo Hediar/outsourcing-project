@@ -1,21 +1,24 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { styled } from 'styled-components';
 
 const DetailInfor = () => {
+  const { detailModalData } = useSelector((state) => state.detailModal);
+
   return (
     <S.InfoBox>
       <S.InfoTitle>상세정보 설명</S.InfoTitle>
-      <S.Info>data.detail.information</S.Info>
+      <S.Info>{detailModalData.detail?.information}</S.Info>
       <S.InfoTitle>주소</S.InfoTitle>
-      <S.Info>data.address</S.Info>
+      <S.Info>{detailModalData.address}</S.Info>
       <S.InfoTitle>운영시간</S.InfoTitle>
-      <S.Info>data.detail.businessHours</S.Info>
+      <S.Info>{detailModalData.detail?.businessHours}</S.Info>
       <S.InfoTitle>전화번호</S.InfoTitle>
-      <S.Info>data.detail.tel</S.Info>
+      <S.Info>{detailModalData.detail?.tel}</S.Info>
       <S.InfoTitle>홈페이지</S.InfoTitle>
-      <S.Info>data.detail.Link</S.Info>
+      <S.Info>{detailModalData.detail?.Link}</S.Info>
       <S.InfoTitle>주차여부</S.InfoTitle>
-      <S.Info>data.detail.parking</S.Info>
+      <S.Info>{detailModalData.detail?.parking}</S.Info>
     </S.InfoBox>
   );
 };
