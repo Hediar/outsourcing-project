@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 import SelectComp from '../components/Aside/SelectComp';
 import PlaceList from '../components/Aside/PlaceList';
 import { useQuery } from 'react-query';
-import { getPlaceList } from '../api/placeList';
+import { getPlaceList } from '../api/jejuHotPlace';
 import MainMap from '../components/MainMap/MainMap';
 import usePlaceData from '../hook/usePlaceData';
 

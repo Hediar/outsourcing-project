@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react';
-import { getPlaceList } from '../api/placeList';
-import { useQuery } from 'react-query';
 const { kakao } = window;
 
 const usePlaceData = (list, area, category) => {

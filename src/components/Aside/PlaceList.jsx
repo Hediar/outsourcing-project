@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { styled } from 'styled-components';
 import { useQuery } from 'react-query';
-import { getPlaceList } from '../../api/placeList';
 import usePlaceData from '../../hook/usePlaceData';
 
 const PlaceList = ({ list, area, category }) => {
