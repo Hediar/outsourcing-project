@@ -17,7 +17,7 @@ let categoryOption = [
 ];
 
 const customStyles = {
-  option: (provided, isDisabled, isSelected) => ({
+  option: (provided) => ({
     ...provided,
     width: '100%',
     opacity: 0.8,
@@ -27,7 +27,7 @@ const customStyles = {
       backgroundColor: '#FFD9AC'
     }
   }),
-  control: (provided, state) => ({
+  control: (provided) => ({
     ...provided,
     borderRadius: '10px',
     width: '100%',
@@ -47,9 +47,9 @@ const customStyles = {
   })
 };
 
-const SelectComp = () => {
-  const [area, setArea] = useState('전체');
-  const [category, setCategory] = useState('전체');
+const SelectComp = ({ area, setArea, category, setCategory }) => {
+  // const [area, setArea] = useState('전체');
+  // const [category, setCategory] = useState('전체');
 
   return (
     <S.SelectBox>

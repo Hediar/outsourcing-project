@@ -3,36 +3,45 @@ import { getPlaceList } from '../api/placeList';
 import { useQuery } from 'react-query';
 const { kakao } = window;
 
-const usePlaceData = (number) => {
-  //   const { data, isLoding, isError } = useQuery('placeList', getPlaceList);
-  const [data, setData] = useState('');
-  // const [data, setData] = useState('');
+const usePlaceData = (list, area, category) => {
+  const [dataList, setDataList] = useState([]);
 
-  const geocoder = new kakao.maps.services.Geocoder();
-  const callback = function (result, status) {
-    if (status === kakao.maps.services.Status.OK) {
-      console.log(result);
-      return result;
-    }
+  const filterTour = (data) => {
+    const a = data.filter((item) => {
+      if (category === '관광지') {
+        return item.category === 'tourSpot';
+      } else if (category === '카페') {
+        return item.category === 'cafe';
+      } else if (category === '식당') {
+        return item.category === 'restaurant';
+      } else {
+        return item;
+      }
+    });
+    return a;
   };
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getPlaceList();
-      setData(data);
-    };
-    fetchData();
-  }, []);
 
   useEffect(() => {
-    if (data) {
-      data.map((item) => {
-        geocoder.addressSearch(item.address, callback);
-      });
+    const andeok = list?.filter((item) => {
+      return item.areaid === 'Andeok';
+    });
+    const jocheon = list?.filter((item) => {
+      return item.areaid === 'Jocheon';
+    });
+    const aewol = list?.filter((item) => {
+      return item.areaid === 'Aewol';
+    });
+    if (area === '조천') {
+      setDataList(filterTour(jocheon));
+    } else if (area === '애월') {
+      setDataList(filterTour(aewol));
+    } else if (area === '안덕') {
+      setDataList(filterTour(andeok));
+    } else {
+      setDataList(filterTour(list));
     }
-  }, [data]);
-
-  const a = 0;
-  return [a];
+  }, [area, category]);
+  return [dataList];
 };
 
 export default usePlaceData;
