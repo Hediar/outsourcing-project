@@ -4,13 +4,15 @@ import { useQuery } from 'react-query';
 import Blog from '../Blog/Blog';
 import useIntersectionObserver from '../../hook/useIntersectionObserver';
 import { styled } from 'styled-components';
+import { useSelector } from 'react-redux';
 
-const ShowBlogList = ({ searchTxt }) => {
+const ShowBlogList = () => {
   const [page, setPage] = useState(1);
   const target = useRef(null);
   const [blogList, setBlogList] = useState([]);
 
-  const { data, isError, isLoading } = useQuery('blogLists', () => getBlogLists(searchTxt, page), {
+  const { title } = useSelector((state) => state.detailModal.detailModalData);
+  const { data, isError, isLoading } = useQuery('blogLists', () => getBlogLists(title, page), {
     onSuccess: () => {
       setBlogList(data?.documents);
     },
@@ -22,13 +24,13 @@ const ShowBlogList = ({ searchTxt }) => {
   });
 
   const getData = async () => {
-    const response = await getBlogLists(searchTxt, page);
+    const response = await getBlogLists(title, page);
     setBlogList(response.documents);
   };
 
   useEffect(() => {
     getData();
-  }, [searchTxt]);
+  }, [title]);
 
   useEffect(() => {
     // console.log(target);
@@ -58,7 +60,7 @@ const ShowBlogList = ({ searchTxt }) => {
 
   const updateData = async () => {
     if (page !== 1) {
-      const response = await getBlogLists(searchTxt, page);
+      const response = await getBlogLists(title, page);
       const blogData = response.documents;
       setBlogList((prev) => [...prev, ...blogData]);
     }

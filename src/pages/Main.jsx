@@ -53,11 +53,12 @@ const S = {
     display: flex;
   `,
   Aside: styled.aside`
-    padding-top: 10%;
+    /* padding-top: 5%; */
+    margin-top: 70px;
     width: 350px;
     background-color: #e5871a;
     box-sizing: border-box;
-    height: 100vh;
+    height: calc(100vh - 70px);
     display: flex;
     flex-direction: column;
     align-items: center;

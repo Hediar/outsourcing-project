@@ -5,6 +5,8 @@ import Map from '../Map/Map';
 import ShowBlogList from '../Blog/ShowBlogList';
 import { getPlace } from '../../api/jejuHotPlace';
 import { styled } from 'styled-components';
+import DetailInfor from './DetailInfor';
+import DetailTab from './DetailTab';
 import usePlaceData from '../../hook/usePlaceData';
 import { useDispatch, useSelector } from 'react-redux';
 import { setDetailModalOn } from '../../redux/modules/modalSlice';
@@ -48,20 +50,9 @@ const DetailBox = () => {
 
   return (
     <S.DetailBoxContainer>
-      <S.DetailCloseBtn onClick={() => dispatch(setDetailModalOn(false))}>닫기</S.DetailCloseBtn>
-      <S.DetailBox>
-        <S.InfoBox>
-          <S.Title>{detailModalData.title}</S.Title>
-          <S.Img src="https://blog.kakaocdn.net/dn/o1KIw/btqu9mflPY6/rGk1mM3iugV1c6jj9Z3E80/img.jpg" />
-          <S.Info>{detailModalData.detail?.information}</S.Info>
-          <S.Info>{detailModalData.address}</S.Info>
-          <S.Info>{detailModalData.detail?.businessHours}</S.Info>
-          <S.Info>{detailModalData.detail?.tel}</S.Info>
-          <S.Info>{detailModalData.detail?.Link}</S.Info>
-          <S.Info>{detailModalData.detail?.parking}</S.Info>
-        </S.InfoBox>
-        <ShowBlogList searchTxt={detailModalData.title} />
-      </S.DetailBox>
+      <S.Title>{detailModalData.title}</S.Title>
+      <S.Img src="https://blog.kakaocdn.net/dn/o1KIw/btqu9mflPY6/rGk1mM3iugV1c6jj9Z3E80/img.jpg" />
+      <DetailTab />
     </S.DetailBoxContainer>
   );
 };
@@ -70,8 +61,19 @@ export default DetailBox;
 
 const S = {
   DetailBoxContainer: styled.div`
+    width: 500px;
+    height: 100vh;
+    box-sizing: border-box;
     padding-top: 70px;
+    background-color: aliceblue;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    z-index: 1;
   `,
   DetailCloseBtn: styled.button`
     width: 50px;
@@ -87,18 +89,16 @@ const S = {
     width: 500px;
     height: 100vh;
     box-sizing: border-box;
-    background-color: white;
+    padding-top: 70px;
+    background-color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     overflow: auto;
     &::-webkit-scrollbar {
       display: none;
     }
     z-index: 1;
-  `,
-  InfoBox: styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   `,
   Img: styled.img`
     width: 400px;
@@ -116,8 +116,5 @@ const S = {
     &.test {
       box-shadow: 0px 5px 5px -4px gray;
     }
-  `,
-  Info: styled.p`
-    font-size: 18px;
   `
 };
