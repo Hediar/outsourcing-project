@@ -5,6 +5,8 @@ import Map from '../Map/Map';
 import ShowBlogList from '../Blog/ShowBlogList';
 import { getPlace } from '../../api/jejuHotPlace';
 import { styled } from 'styled-components';
+import DetailInfor from './DetailInfor';
+import DetailTab from './DetailTab';
 
 const DetailBox = () => {
   //   const target = useRef(null);
@@ -45,17 +47,9 @@ const DetailBox = () => {
     <S.DetailBoxContainer>
       {/* <Map /> */}
       {/* address = {`${data.title}`} */}
-      <S.InfoBox>
-        <S.Title>이름:data.title</S.Title>
-        <S.Img src="https://blog.kakaocdn.net/dn/o1KIw/btqu9mflPY6/rGk1mM3iugV1c6jj9Z3E80/img.jpg" />
-        <S.Info>상세정보 설명: data.detail.information</S.Info>
-        <S.Info>주소: data.address</S.Info>
-        <S.Info>운영 시간: data.detail.businessHours</S.Info>
-        <S.Info>전화번호: data.detail.tel</S.Info>
-        <S.Info>홈페이지: data.detail.Link</S.Info>
-        <S.Info>주차여부: data.detail.parking</S.Info>
-      </S.InfoBox>
-      <ShowBlogList />
+      <S.Title>이름:data.title</S.Title>
+      <S.Img src="https://blog.kakaocdn.net/dn/o1KIw/btqu9mflPY6/rGk1mM3iugV1c6jj9Z3E80/img.jpg" />
+      <DetailTab />
     </S.DetailBoxContainer>
   );
 };
@@ -68,18 +62,15 @@ const S = {
     height: 100vh;
     box-sizing: border-box;
     padding-top: 70px;
-    background-color: white;
+    background-color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     overflow: auto;
     &::-webkit-scrollbar {
       display: none;
     }
     z-index: 1;
-  `,
-  InfoBox: styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   `,
   Img: styled.img`
     width: 400px;
@@ -97,8 +88,5 @@ const S = {
     &.test {
       box-shadow: 0px 5px 5px -4px gray;
     }
-  `,
-  Info: styled.p`
-    font-size: 18px;
   `
 };
