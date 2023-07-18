@@ -49,11 +49,14 @@ const DetailBox = () => {
   //   }
 
   return (
-    <S.DetailBoxContainer>
-      <S.Title>{detailModalData.title}</S.Title>
-      <S.Img src="https://blog.kakaocdn.net/dn/o1KIw/btqu9mflPY6/rGk1mM3iugV1c6jj9Z3E80/img.jpg" />
-      <DetailTab />
-    </S.DetailBoxContainer>
+    <>
+      <S.DetailCloseBtn onClick={() => dispatch(setDetailModalOn(false))}>X</S.DetailCloseBtn>
+      <S.DetailBoxContainer>
+        <S.Title>{detailModalData.title}</S.Title>
+        <S.Img src="https://blog.kakaocdn.net/dn/o1KIw/btqu9mflPY6/rGk1mM3iugV1c6jj9Z3E80/img.jpg" />
+        <DetailTab />
+      </S.DetailBoxContainer>
+    </>
   );
 };
 
@@ -65,7 +68,7 @@ const S = {
     height: 100vh;
     box-sizing: border-box;
     padding-top: 70px;
-    background-color: aliceblue;
+    background-color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -79,26 +82,13 @@ const S = {
     width: 50px;
     height: 50px;
     position: absolute;
-    z-index: 5;
+    z-index: 2;
     left: 850px;
+    top: 70px;
     background-color: white;
     border: none;
     cursor: pointer;
-  `,
-  DetailBox: styled.div`
-    width: 500px;
-    height: 100vh;
-    box-sizing: border-box;
-    padding-top: 70px;
-    background-color: aliceblue;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow: auto;
-    &::-webkit-scrollbar {
-      display: none;
-    }
-    z-index: 1;
+    font-size: 20px;
   `,
   Img: styled.img`
     width: 400px;

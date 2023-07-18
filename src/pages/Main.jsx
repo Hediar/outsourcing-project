@@ -27,7 +27,7 @@ const Main = () => {
     <S.Container>
       <S.AsideContainer>
         <S.Aside>
-          <S.WelcomeMessage>혼자옵서예 ~ 🍊</S.WelcomeMessage>
+          <S.WelcomeMessage>혼저옵서예 ~ 🍊</S.WelcomeMessage>
           <SelectComp area={area} setArea={setArea} category={category} setCategory={setCategory} />
           <PlaceList list={data} area={area} category={category} />
         </S.Aside>
