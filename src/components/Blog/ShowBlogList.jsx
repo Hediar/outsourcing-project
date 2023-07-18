@@ -91,6 +91,8 @@ export default ShowBlogList;
 
 const S = {
   BlogListContainer: styled.div`
-    padding: 3%;
+    width: 400px;
+    box-sizing: border-box;
+    margin-top: 25px;
   `
 };

@@ -48,7 +48,9 @@ const DetailBox = () => {
       {/* <Map /> */}
       {/* address = {`${data.title}`} */}
       <S.Title>이름:data.title</S.Title>
-      <S.Img src="https://blog.kakaocdn.net/dn/o1KIw/btqu9mflPY6/rGk1mM3iugV1c6jj9Z3E80/img.jpg" />
+      <S.ImgBox>
+        <S.Img src="https://blog.kakaocdn.net/dn/o1KIw/btqu9mflPY6/rGk1mM3iugV1c6jj9Z3E80/img.jpg" />
+      </S.ImgBox>
       <DetailTab />
     </S.DetailBoxContainer>
   );
@@ -62,7 +64,7 @@ const S = {
     height: 100vh;
     box-sizing: border-box;
     padding-top: 70px;
-    background-color: aliceblue;
+    background-color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -72,10 +74,15 @@ const S = {
     }
     z-index: 1;
   `,
-  Img: styled.img`
+  ImgBox: styled.div`
     width: 400px;
+    height: 200px;
     border-radius: 10px;
     margin: 80px 0 25px 0;
+    overflow: hidden;
+  `,
+  Img: styled.img`
+    width: 400px;
   `,
   Title: styled.h3`
     font-size: 25px;
