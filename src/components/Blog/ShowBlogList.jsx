@@ -5,12 +5,12 @@ import Blog from '../Blog/Blog';
 import useIntersectionObserver from '../../hook/useIntersectionObserver';
 import { styled } from 'styled-components';
 
-const ShowBlogList = () => {
+const ShowBlogList = ({ searchTxt }) => {
   const [page, setPage] = useState(1);
   const target = useRef(null);
   const [blogList, setBlogList] = useState([]);
 
-  const { data, isError, isLoading } = useQuery('blogLists', () => getBlogLists('진솔', page), {
+  const { data, isError, isLoading } = useQuery('blogLists', () => getBlogLists(searchTxt, page), {
     onSuccess: () => {
       setBlogList(data?.documents);
     },
@@ -22,17 +22,15 @@ const ShowBlogList = () => {
   });
 
   const getData = async () => {
-    const response = await getBlogLists('진솔', page);
+    const response = await getBlogLists(searchTxt, page);
     setBlogList(response.documents);
   };
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [searchTxt]);
 
   useEffect(() => {
-    console.log(blogList);
-
     // console.log(target);
     // if (target !== null && page === 1) {
     //   console.log('0000', target);
@@ -60,7 +58,7 @@ const ShowBlogList = () => {
 
   const updateData = async () => {
     if (page !== 1) {
-      const response = await getBlogLists('진솔', page);
+      const response = await getBlogLists(searchTxt, page);
       const blogData = response.documents;
       setBlogList((prev) => [...prev, ...blogData]);
     }

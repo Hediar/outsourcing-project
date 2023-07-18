@@ -1,14 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { styled } from 'styled-components';
 import usePlaceData from '../../hook/usePlaceData';
+import { useDispatch } from 'react-redux';
+import { setDetailModalData, setDetailModalOn } from '../../redux/modules/modalSlice';
 
 const PlaceList = ({ list, area, category }) => {
   const [filteredData] = usePlaceData(list, area, category);
+  const dispatch = useDispatch();
+
+  const listOnclickHandler = (item) => {
+    dispatch(setDetailModalData(item));
+    dispatch(setDetailModalOn(true));
+  };
 
   return (
     <S.ListBox>
       {filteredData?.map((item) => {
-        return <S.ListItem key={item.id}>{item.title}</S.ListItem>;
+        return (
+          <S.ListItem key={item.id} onClick={() => listOnclickHandler(item)}>
+            {item.title}
+          </S.ListItem>
+        );
       })}
     </S.ListBox>
   );

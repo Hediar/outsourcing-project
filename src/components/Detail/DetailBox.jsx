@@ -5,8 +5,13 @@ import Map from '../Map/Map';
 import ShowBlogList from '../Blog/ShowBlogList';
 import { getPlace } from '../../api/jejuHotPlace';
 import { styled } from 'styled-components';
+import usePlaceData from '../../hook/usePlaceData';
+import { useDispatch, useSelector } from 'react-redux';
+import { setDetailModalOn } from '../../redux/modules/modalSlice';
 
 const DetailBox = () => {
+  const { detailModalData } = useSelector((state) => state.detailModal);
+  const dispatch = useDispatch();
   //   const target = useRef(null);
   //   const [observe, unobserve] = useIntersectionObserver(() => {
   //     // 스타일을 넣어줄거야 박스 쉐도우를.
@@ -43,19 +48,20 @@ const DetailBox = () => {
 
   return (
     <S.DetailBoxContainer>
-      {/* <Map /> */}
-      {/* address = {`${data.title}`} */}
-      <S.InfoBox>
-        <S.Title>이름:data.title</S.Title>
-        <S.Img src="https://blog.kakaocdn.net/dn/o1KIw/btqu9mflPY6/rGk1mM3iugV1c6jj9Z3E80/img.jpg" />
-        <S.Info>상세정보 설명: data.detail.information</S.Info>
-        <S.Info>주소: data.address</S.Info>
-        <S.Info>운영 시간: data.detail.businessHours</S.Info>
-        <S.Info>전화번호: data.detail.tel</S.Info>
-        <S.Info>홈페이지: data.detail.Link</S.Info>
-        <S.Info>주차여부: data.detail.parking</S.Info>
-      </S.InfoBox>
-      <ShowBlogList />
+      <S.DetailCloseBtn onClick={() => dispatch(setDetailModalOn(false))}>닫기</S.DetailCloseBtn>
+      <S.DetailBox>
+        <S.InfoBox>
+          <S.Title>{detailModalData.title}</S.Title>
+          <S.Img src="https://blog.kakaocdn.net/dn/o1KIw/btqu9mflPY6/rGk1mM3iugV1c6jj9Z3E80/img.jpg" />
+          <S.Info>{detailModalData.detail?.information}</S.Info>
+          <S.Info>{detailModalData.address}</S.Info>
+          <S.Info>{detailModalData.detail?.businessHours}</S.Info>
+          <S.Info>{detailModalData.detail?.tel}</S.Info>
+          <S.Info>{detailModalData.detail?.Link}</S.Info>
+          <S.Info>{detailModalData.detail?.parking}</S.Info>
+        </S.InfoBox>
+        <ShowBlogList searchTxt={detailModalData.title} />
+      </S.DetailBox>
     </S.DetailBoxContainer>
   );
 };
@@ -64,10 +70,23 @@ export default DetailBox;
 
 const S = {
   DetailBoxContainer: styled.div`
+    padding-top: 70px;
+    display: flex;
+  `,
+  DetailCloseBtn: styled.button`
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    z-index: 5;
+    left: 850px;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+  `,
+  DetailBox: styled.div`
     width: 500px;
     height: 100vh;
     box-sizing: border-box;
-    padding-top: 70px;
     background-color: white;
     overflow: auto;
     &::-webkit-scrollbar {
