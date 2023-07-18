@@ -6,13 +6,16 @@ const Blog = ({ item }) => {
   return (
     <S.ContentLink href={item.url}>
       <S.BlogContainer key={item.idx}>
-        <p>{item.blogname}</p>
-        <S.ContentTitle>{Parser(item.title)}</S.ContentTitle>
         <S.ContentBox>
-          <S.ContentDesc>{Parser(item.contents)}</S.ContentDesc>
-          <img src={item.thumbnail} />
+          <div>
+            <S.ContentTitle>{Parser(item.title)}</S.ContentTitle>
+            <div>
+              <p>{item.blogname}</p>
+              <p>{item.datetime.slice(0, 10)}</p>
+            </div>
+          </div>
+          <S.ContentImg src={item.thumbnail} />
         </S.ContentBox>
-        <p>{item.datetime.slice(0, 10)}</p>
       </S.BlogContainer>
     </S.ContentLink>
   );
@@ -23,21 +26,27 @@ export default Blog;
 const S = {
   BlogContainer: styled.div`
     border: black 1px solid;
-    padding: 30px;
+    padding: 20px;
     margin-bottom: 20px;
+    height: 120px;
+    overflow: hidden;
   `,
+
   ContentTitle: styled.p`
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 500;
-    margin: 25px 0;
+    margin: 20px 0;
   `,
   ContentBox: styled.div`
     display: flex;
+    justify-content: space-between;
   `,
-  ContentDesc: styled.p`
-    font-size: 18px;
-    margin-right: 50px;
+  ContentImg: styled.img`
+    width: 130px;
+    height: 130px;
+    border-radius: 10px;
   `,
+
   ContentLink: styled.a`
     text-decoration: none;
     color: black;

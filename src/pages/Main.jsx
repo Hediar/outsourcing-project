@@ -26,7 +26,7 @@ const S = {
   `,
   Aside: styled.aside`
     padding-top: 5%;
-    width: 23%;
+    width: 350px;
     background-color: #e5871a;
     box-sizing: border-box;
     height: 100vh;
