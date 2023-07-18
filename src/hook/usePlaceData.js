@@ -5,7 +5,7 @@ const usePlaceData = (list, area, category) => {
   const [dataList, setDataList] = useState([]);
 
   const filterTour = (data) => {
-    const a = data.filter((item) => {
+    const a = data?.filter((item) => {
       if (category === '관광지') {
         return item.category === 'tourSpot';
       } else if (category === '카페') {
