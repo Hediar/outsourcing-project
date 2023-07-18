@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { styled } from 'styled-components';
+import usePlaceData from '../../hook/usePlaceData';
 
-const PlaceList = () => {
+const PlaceList = ({ list, area, category }) => {
+  const [filteredData] = usePlaceData(list, area, category);
+
   return (
     <S.ListBox>
-      <S.ListItem>장소1</S.ListItem>
-      <S.ListItem>장소2</S.ListItem>
+      {filteredData?.map((item) => {
+        return <S.ListItem key={item.id}>{item.title}</S.ListItem>;
+      })}
     </S.ListBox>
   );
 };
