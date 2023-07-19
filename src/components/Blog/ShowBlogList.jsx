@@ -84,7 +84,5 @@ const ShowBlogList = () => {
 export default ShowBlogList;
 
 const S = {
-  BlogListContainer: styled.div`
-    padding: 3%;
-  `
+  BlogListContainer: styled.div``
 };

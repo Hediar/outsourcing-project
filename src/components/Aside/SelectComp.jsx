@@ -20,6 +20,7 @@ const customStyles = {
   option: (provided) => ({
     ...provided,
     width: '100%',
+    // height: '50px',
     opacity: 0.8,
     cursor: 'pointer',
     textAlign: 'center',

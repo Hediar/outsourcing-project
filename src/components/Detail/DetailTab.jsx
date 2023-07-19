@@ -50,37 +50,74 @@ const DetailTab = () => {
     }
   ];
   return (
-    <>
-      <S.TabMenu className="tabBox">
-        {tabContentArr.map((section, idx) => {
-          return section.tabTitle;
-        })}
-      </S.TabMenu>
-      <div>{tabContentArr[activeIndex].tabContent}</div>
-    </>
+    <S.Container>
+      <S.TabArea>
+        <S.TabMenu className="tabBox">
+          {tabContentArr.map((section, idx) => {
+            return section.tabTitle;
+          })}
+        </S.TabMenu>
+      </S.TabArea>
+      <S.TapContentArea>{tabContentArr[activeIndex].tabContent}</S.TapContentArea>
+    </S.Container>
   );
 };
 
 const S = {
-  TabMenu: styled.ul`
-    /* background-color: aqua; */
-    width: 80%;
+  Container: styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   `,
-  TabContent: styled.li`
+  TabArea: styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 8px 10px -4px rgba(0, 0, 0, 0.2);
+  `,
+  TabMenu: styled.div`
+    width: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* gap: 15px; */
+    /* height: 50px; */
+  `,
+  TapContentArea: styled.div`
+    padding-top: 10px;
+    height: calc(100vh - 448px);
+    /* background-color: royalblue; */
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  `,
+  TabContent: styled.div`
+    flex-grow: 1;
     float: left;
-    width: 33%;
+    /* width: 100px; */
     text-align: center;
     cursor: pointer;
     padding: 10px 0;
-    border: 1px solid gray;
+    transition: 0.2s;
+    border: 1px solid orange;
     box-sizing: border-box;
+    color: orange;
     background-color: white;
     ${(props) =>
       props.select === 'Y' &&
       css`
-        background-color: gray;
+        background-color: orange;
         font-weight: bold;
+        color: white;
       `}
+    &:hover {
+      /* background-color: orange; */
+      transform: scale(1.1);
+    }
+    &:active {
+      transform: scale(1);
+    }
   `
 };
 

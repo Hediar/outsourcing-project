@@ -3,6 +3,12 @@ import reset from 'styled-reset';
 
 const GlobalStyle = createGlobalStyle`
 ${reset}
+* {
+    color: #2b2b2b;
+  }
+  svg, path {
+    color:inherit;
+  }
 /* 
 @font-face {
     font-family: 'CookieRun-Regular';
@@ -11,9 +17,7 @@ ${reset}
     font-style: normal;
 }
 
-  * {
-    font-family: 'CookieRun-Regular';
-  }
+ 
 
   body {
     font-family: 'CookieRun-Regular';
