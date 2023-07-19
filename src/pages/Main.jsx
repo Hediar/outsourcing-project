@@ -7,6 +7,7 @@ import { getPlaceList } from '../api/jejuHotPlace';
 import MainMap from '../components/MainMap/MainMap';
 import DetailBox from '../components/Detail/DetailBox';
 import { useSelector } from 'react-redux';
+import Header from '../components/Header/Header';
 
 const Main = () => {
   const [area, setArea] = useState('전체');
@@ -24,17 +25,20 @@ const Main = () => {
   }
 
   return (
-    <S.Container>
-      <S.AsideContainer>
-        <S.Aside>
-          <S.WelcomeMessage>혼저옵서예 ~ 🍊</S.WelcomeMessage>
-          <SelectComp area={area} setArea={setArea} category={category} setCategory={setCategory} />
-          <PlaceList list={data} area={area} category={category} />
-        </S.Aside>
-        {detailModalOn ? <DetailBox /> : null}
-      </S.AsideContainer>
-      <MainMap list={data} area={area} category={category}></MainMap>
-    </S.Container>
+    <>
+      <Header setArea={setArea} />
+      <S.Container>
+        <S.AsideContainer>
+          <S.Aside>
+            <S.WelcomeMessage>혼저옵서예 ~ 🍊</S.WelcomeMessage>
+            <SelectComp area={area} setArea={setArea} category={category} setCategory={setCategory} />
+            <PlaceList list={data} area={area} category={category} />
+          </S.Aside>
+          {detailModalOn ? <DetailBox /> : null}
+        </S.AsideContainer>
+        <MainMap list={data} area={area} category={category}></MainMap>
+      </S.Container>
+    </>
   );
 };
 
