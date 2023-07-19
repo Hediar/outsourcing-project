@@ -1,58 +1,22 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useParams } from 'react-router';
-import { useQuery } from 'react-query';
-import Map from '../Map/Map';
-import ShowBlogList from '../Blog/ShowBlogList';
-import { getPlace } from '../../api/jejuHotPlace';
+import React from 'react';
 import { styled } from 'styled-components';
-import DetailInfor from './DetailInfor';
 import DetailTab from './DetailTab';
+import { useDispatch, useSelector } from 'react-redux';
+import { setDetailModalOn } from '../../redux/modules/modalSlice';
 
 const DetailBox = () => {
-  //   const target = useRef(null);
-  //   const [observe, unobserve] = useIntersectionObserver(() => {
-  //     // 스타일을 넣어줄거야 박스 쉐도우를.
-  //   });
-
-  //   useEffect(() => {
-  //     if (isLoading) {
-  //       if (target == null) {
-  //         unobserve(target.current);
-  //       }
-  //     } else {
-  //       observe(target.current);
-  //     }
-  //   }, [isLoading]);
-
-  //   const param = useParams();
-  //   const { isLoading, isError, data } = useQuery(`${param.id}`, () => getPlace(param.id));
-
-  //   if (isLoading) {
-  //     return (
-  //       <>
-  //         <h1>로딩중</h1>
-  //       </>
-  //     );
-  //   }
-
-  //   if (isError) {
-  //     return (
-  //       <>
-  //         <h1>오류가 발생하였습니다....!!!</h1>
-  //       </>
-  //     );
-  //   }
+  const { detailModalData } = useSelector((state) => state.detailModal);
+  const dispatch = useDispatch();
 
   return (
-    <S.DetailBoxContainer>
-      {/* <Map /> */}
-      {/* address = {`${data.title}`} */}
-      <S.Title>이름:data.title</S.Title>
-      <S.ImgBox>
+    <>
+      <S.DetailCloseBtn onClick={() => dispatch(setDetailModalOn(false))}>X</S.DetailCloseBtn>
+      <S.DetailBoxContainer>
+        <S.Title>{detailModalData.title}</S.Title>
         <S.Img src="https://blog.kakaocdn.net/dn/o1KIw/btqu9mflPY6/rGk1mM3iugV1c6jj9Z3E80/img.jpg" />
-      </S.ImgBox>
-      <DetailTab />
-    </S.DetailBoxContainer>
+        <DetailTab />
+      </S.DetailBoxContainer>
+    </>
   );
 };
 
@@ -73,6 +37,18 @@ const S = {
       display: none;
     }
     z-index: 1;
+  `,
+  DetailCloseBtn: styled.button`
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    z-index: 2;
+    left: 850px;
+    top: 70px;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
   `,
   ImgBox: styled.div`
     width: 400px;
@@ -95,5 +71,17 @@ const S = {
     &.test {
       box-shadow: 0px 5px 5px -4px gray;
     }
+  `,
+  DetailCloseBtn: styled.button`
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    z-index: 2;
+    left: 850px;
+    top: 70px;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
   `
 };

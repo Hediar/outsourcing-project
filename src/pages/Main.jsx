@@ -5,12 +5,15 @@ import PlaceList from '../components/Aside/PlaceList';
 import { useQuery } from 'react-query';
 import { getPlaceList } from '../api/jejuHotPlace';
 import MainMap from '../components/MainMap/MainMap';
+import DetailBox from '../components/Detail/DetailBox';
+import { useSelector } from 'react-redux';
 
 const Main = () => {
   const [area, setArea] = useState('전체');
   const [category, setCategory] = useState('전체');
 
   const { data, isLoading, isError } = useQuery('placeList', getPlaceList);
+  const { detailModalOn } = useSelector((state) => state).detailModal;
 
   if (isLoading) {
     return <div>로딩중</div>;
@@ -22,11 +25,14 @@ const Main = () => {
 
   return (
     <S.Container>
-      <S.Aside>
-        <S.WelcomeMessage>혼자옵서예 ~ 🍊</S.WelcomeMessage>
-        <SelectComp area={area} setArea={setArea} category={category} setCategory={setCategory} />
-        <PlaceList list={data} area={area} category={category} />
-      </S.Aside>
+      <S.AsideContainer>
+        <S.Aside>
+          <S.WelcomeMessage>혼저옵서예 ~ 🍊</S.WelcomeMessage>
+          <SelectComp area={area} setArea={setArea} category={category} setCategory={setCategory} />
+          <PlaceList list={data} area={area} category={category} />
+        </S.Aside>
+        {detailModalOn ? <DetailBox /> : null}
+      </S.AsideContainer>
       <MainMap list={data} area={area} category={category}></MainMap>
     </S.Container>
   );
@@ -43,15 +49,20 @@ const S = {
     font-weight: bold;
     margin: 20px 0;
   `,
+  AsideContainer: styled.div`
+    display: flex;
+  `,
   Aside: styled.aside`
-    padding-top: 5%;
+    /* padding-top: 5%; */
+    margin-top: 70px;
     width: 350px;
     background-color: #e5871a;
     box-sizing: border-box;
-    height: 100vh;
+    height: calc(100vh - 70px);
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: 1;
   `
 };
 

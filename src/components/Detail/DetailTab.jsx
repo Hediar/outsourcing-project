@@ -52,6 +52,7 @@ const S = {
   TabMenu: styled.ul`
     /* background-color: aqua; */
     width: 80%;
+    margin-top: 25px;
   `,
   TabContent: styled.li`
     float: left;
