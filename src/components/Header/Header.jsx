@@ -10,10 +10,10 @@ const Header = ({ setArea }) => {
       <S.Logo src="" alt="logo" />
       <S.JejuLogo />
       <S.SelectButtons>
-        <button onClick={() => changeAreaButtonHandler('전체')}>전체</button>
-        <button onClick={() => changeAreaButtonHandler('조천')}>조천</button>
-        <button onClick={() => changeAreaButtonHandler('애월')}>애월</button>
-        <button onClick={() => changeAreaButtonHandler('안덕')}>안덕</button>
+        <S.ButtonStyle onClick={(e) => changeAreaButtonHandler(e.target.innerText)}>전체</S.ButtonStyle>
+        <S.ButtonStyle onClick={(e) => changeAreaButtonHandler(e.target.innerText)}>조천</S.ButtonStyle>
+        <S.ButtonStyle onClick={(e) => changeAreaButtonHandler(e.target.innerText)}>애월</S.ButtonStyle>
+        <S.ButtonStyle onClick={(e) => changeAreaButtonHandler(e.target.innerText)}>안덕</S.ButtonStyle>
       </S.SelectButtons>
     </S.Header>
   );
@@ -45,10 +45,21 @@ const S = {
     background-position: center;
   `,
   SelectButtons: styled.div`
+    display: flex;
     position: absolute;
-    right: 20%;
-    width: 100px;
-    height: 70px;
+    right: 3%;
+    top: 20%;
+  `,
+  ButtonStyle: styled.button`
+    cursor: pointer;
+    border: none;
+    background-color: #d8e6e7;
+    width: 80px;
+    height: 30px;
+    margin: 6px;
+    &:active {
+      background-color: #b9c5c6;
+    }
   `
 };
 

@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import usePlaceData from '../../hook/usePlaceData';
+import { useDispatch } from 'react-redux';
+import { setDetailModalData, setDetailModalOn } from '../../redux/modules/modalSlice';
 
 const { kakao } = window;
 
 const MainMap = ({ list, area, category }) => {
   const [map, setMap] = useState(null);
   const [filteredData] = usePlaceData(list, area, category);
+  const dispatch = useDispatch();
+
+  const listOnclickHandler = (item) => {
+    dispatch(setDetailModalData(item));
+    dispatch(setDetailModalOn(true));
+  };
 
   useEffect(() => {
     // console.log(filteredData);
@@ -48,6 +56,15 @@ const MainMap = ({ list, area, category }) => {
             });
             marker.setMap(map); //추가한 코드
 
+            /**
+             * marker 클릭 이벤트
+             */
+            kakao.maps.event.addListener(marker, 'click', function () {
+              listOnclickHandler(position);
+              map.setCenter(coords);
+              setBounds();
+            });
+
             // LatLngBounds 객체에 좌표를 추가합니다
             bounds.extend(coords); //추가한 코드, 현재 코드에서 좌표정보는 point[i]가 아닌 coords이다.
 
@@ -63,12 +80,12 @@ const MainMap = ({ list, area, category }) => {
           }
         });
       });
-      function setBounds() {
+      const setBounds = () => {
         //추가한 함수
         // LatLngBounds 객체에 추가된 좌표들을 기준으로 지도의 범위를 재설정합니다
         // 이때 지도의 중심좌표와 레벨이 변경될 수 있습니다
         map.setBounds(bounds);
-      }
+      };
     }
   }, [filteredData]);
 
