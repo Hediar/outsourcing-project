@@ -33,13 +33,6 @@ const ShowBlogList = () => {
   }, [title]);
 
   useEffect(() => {
-    // console.log(target);
-    // if (target !== null && page === 1) {
-    //   console.log('0000', target);
-    //   observe(target.current);
-    // } else {
-    //   console.log('실행하지말라고;');
-    // }
     const N = data?.documents.length;
     const totalCount = data?.meta.total_count;
 
@@ -90,7 +83,5 @@ const ShowBlogList = () => {
 export default ShowBlogList;
 
 const S = {
-  BlogListContainer: styled.div`
-    padding: 3%;
-  `
+  BlogListContainer: styled.div``
 };
