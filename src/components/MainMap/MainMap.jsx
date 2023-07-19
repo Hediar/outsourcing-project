@@ -31,7 +31,7 @@ const MainMap = ({ list, area, category }) => {
 
       const geocoder = new kakao.maps.services.Geocoder();
       // const data = filteredData.map(())
-      var bounds = new kakao.maps.LatLngBounds(); //추가한 코드
+      const bounds = new kakao.maps.LatLngBounds(); //추가한 코드
 
       filteredData.forEach(function (position) {
         //추가한 코드
@@ -39,10 +39,10 @@ const MainMap = ({ list, area, category }) => {
         geocoder.addressSearch(position.address, function (result, status) {
           // 정상적으로 검색이 완료됐으면
           if (status === kakao.maps.services.Status.OK) {
-            var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+            const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
             // 결과값으로 받은 위치를 마커로 표시합니다
-            var marker = new kakao.maps.Marker({
+            const marker = new kakao.maps.Marker({
               map: map,
               position: coords
             });
@@ -52,7 +52,7 @@ const MainMap = ({ list, area, category }) => {
             bounds.extend(coords); //추가한 코드, 현재 코드에서 좌표정보는 point[i]가 아닌 coords이다.
 
             //변경한 코드
-            var infowindow = new kakao.maps.InfoWindow({
+            const infowindow = new kakao.maps.InfoWindow({
               content: '<div style="width:150px;text-align:center;padding:6px 0;">' + position.title + '</div>'
             });
             infowindow.open(map, marker);
