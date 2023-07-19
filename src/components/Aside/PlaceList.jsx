@@ -12,6 +12,9 @@ const PlaceList = ({ list, area, category }) => {
     dispatch(setDetailModalData(item));
     dispatch(setDetailModalOn(true));
   };
+  useEffect(() => {
+    console.log('placelist', filteredData);
+  });
 
   return (
     <S.ListBox>
