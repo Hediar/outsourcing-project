@@ -40,7 +40,7 @@ const Main = () => {
 
 const S = {
   Container: styled.div`
-    width: 100vw;
+    /* width: 100vw; */
     height: calc(100vh - 70px);
     display: flex;
   `,

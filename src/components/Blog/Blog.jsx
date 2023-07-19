@@ -27,7 +27,7 @@ const S = {
   BlogContainer: styled.div`
     border: black 1px solid;
     padding: 20px;
-    margin-bottom: 20px;
+    margin: 10px 20px 10px 20px;
     height: 120px;
     overflow: hidden;
   `,
@@ -50,5 +50,6 @@ const S = {
   ContentLink: styled.a`
     text-decoration: none;
     color: black;
+    /* margin: 10px; */
   `
 };

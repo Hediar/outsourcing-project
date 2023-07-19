@@ -80,9 +80,9 @@ export default MainMap;
 const S = {
   Container: styled.div`
     margin-top: 70px;
-    width: 100%;
+    width: calc(100vw - 350px);
     height: calc(100vh - 70px);
-    background-color: royalblue;
+    /* background-color: royalblue; */
     display: flex;
   `,
   WelcomeMessage: styled.p`

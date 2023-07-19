@@ -12,7 +12,7 @@ const Header = () => {
 
 const S = {
   Header: styled.header`
-    width: 100%;
+    width: 100vw;
     background-color: aliceblue;
     position: fixed;
     height: 70px;
@@ -28,7 +28,6 @@ const S = {
   JejuLogo: styled.div`
     position: absolute;
     left: 20%;
-    /* transform: translateY(-50%); */
     width: 100px;
     height: 70px;
     background-image: url('https://w7.pngwing.com/pngs/952/1002/png-transparent-jeju-city-provinces-of-south-korea-cheongju-korea-strait-jeolla-province-yes-miscellaneous-text-city.png');
