@@ -12,13 +12,15 @@ const PlaceList = ({ list, area, category }) => {
     dispatch(setDetailModalData(item));
     dispatch(setDetailModalOn(true));
   };
-  useEffect(() => {
-    console.log('placelist', filteredData);
-  });
 
   return (
     <S.ListBox>
       {filteredData?.map((item) => {
+        return (
+          <S.ListItem key={item.id} onClick={() => listOnclickHandler(item)}>
+            {item.title}
+          </S.ListItem>
+        );
         return (
           <S.ListItem key={item.id} onClick={() => listOnclickHandler(item)}>
             {item.title}
