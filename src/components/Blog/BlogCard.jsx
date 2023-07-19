@@ -2,7 +2,7 @@ import React from 'react';
 import { styled } from 'styled-components';
 import Parser from 'html-react-parser';
 
-const Blog = ({ item }) => {
+const BlogCard = ({ item }) => {
   return (
     <S.ContentLink href={item.url}>
       <S.BlogContainer key={item.idx}>
@@ -21,7 +21,7 @@ const Blog = ({ item }) => {
   );
 };
 
-export default Blog;
+export default BlogCard;
 
 const S = {
   BlogContainer: styled.div`
