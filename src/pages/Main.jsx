@@ -41,7 +41,7 @@ const Main = () => {
 const S = {
   Container: styled.div`
     width: 100vw;
-    height: 100vh;
+    height: calc(100vh - 70px);
     display: flex;
   `,
   WelcomeMessage: styled.p`
@@ -56,7 +56,7 @@ const S = {
     /* padding-top: 5%; */
     margin-top: 70px;
     width: 350px;
-    background-color: #e5871a;
+    background-color: #ffa500;
     box-sizing: border-box;
     height: calc(100vh - 70px);
     display: flex;

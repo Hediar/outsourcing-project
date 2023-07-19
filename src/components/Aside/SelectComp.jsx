@@ -48,9 +48,6 @@ const customStyles = {
 };
 
 const SelectComp = ({ area, setArea, category, setCategory }) => {
-  // const [area, setArea] = useState('전체');
-  // const [category, setCategory] = useState('전체');
-
   return (
     <S.SelectBox>
       <Select
