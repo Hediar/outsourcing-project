@@ -22,25 +22,47 @@ const PlaceList = ({ list, area, category }) => {
           </S.ListItem>
         );
       })}
+      <S.ListEmptyBox></S.ListEmptyBox>
     </S.ListBox>
   );
 };
 
 const S = {
-  ListBox: styled.ul`
-    width: 80%;
+  ListBox: styled.div`
+    width: 100%;
     margin-top: 10px;
     box-sizing: border-box;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   `,
-  ListItem: styled.li`
-    margin: 20px 0;
+  ListItem: styled.div`
+    display: block;
+    margin: 20px 40px;
+    font-size: 18px;
+    background-color: white;
+    text-align: center;
     cursor: pointer;
-    transition: 0.5s;
-    border-bottom: 1px solid white;
-    padding: 10px;
+    transition: 0.3s;
+    border-radius: 20px;
+    padding: 30px 0;
     &:hover {
       font-weight: bold;
+      transform: scale(1.1);
+      background-color: #ffa500;
+      color: white;
+      /* margin: 20px 0; */
+      box-shadow: 0px 3px 3px 2px rgba(0, 0, 0, 0.1);
+      margin: 30px 40px;
     }
+    &:active {
+      transform: scale(1);
+    }
+  `,
+  ListEmptyBox: styled.div`
+    height: 100px;
+    width: 100px;
   `
 };
 

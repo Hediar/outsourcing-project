@@ -1,59 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useParams } from 'react-router';
-import { useQuery } from 'react-query';
-import Map from '../Map/Map';
-import ShowBlogList from '../Blog/ShowBlogList';
-import { getPlace } from '../../api/jejuHotPlace';
 import { styled } from 'styled-components';
-import DetailInfor from './DetailInfor';
 import DetailTab from './DetailTab';
-import usePlaceData from '../../hook/usePlaceData';
 import { useDispatch, useSelector } from 'react-redux';
 import { setDetailModalOn } from '../../redux/modules/modalSlice';
 
 const DetailBox = () => {
   const { detailModalData } = useSelector((state) => state.detailModal);
   const dispatch = useDispatch();
-  //   const target = useRef(null);
-  //   const [observe, unobserve] = useIntersectionObserver(() => {
-  //     // 스타일을 넣어줄거야 박스 쉐도우를.
-  //   });
-
-  //   useEffect(() => {
-  //     if (isLoading) {
-  //       if (target == null) {
-  //         unobserve(target.current);
-  //       }
-  //     } else {
-  //       observe(target.current);
-  //     }
-  //   }, [isLoading]);
-
-  //   const param = useParams();
-  //   const { isLoading, isError, data } = useQuery(`${param.id}`, () => getPlace(param.id));
-
-  //   if (isLoading) {
-  //     return (
-  //       <>
-  //         <h1>로딩중</h1>
-  //       </>
-  //     );
-  //   }
-
-  //   if (isError) {
-  //     return (
-  //       <>
-  //         <h1>오류가 발생하였습니다....!!!</h1>
-  //       </>
-  //     );
-  //   }
 
   return (
     <>
       <S.DetailCloseBtn onClick={() => dispatch(setDetailModalOn(false))}>X</S.DetailCloseBtn>
       <S.DetailBoxContainer>
+        <S.Img />
         <S.Title>{detailModalData.title}</S.Title>
-        <S.Img src="https://blog.kakaocdn.net/dn/o1KIw/btqu9mflPY6/rGk1mM3iugV1c6jj9Z3E80/img.jpg" />
         <DetailTab />
       </S.DetailBoxContainer>
     </>
@@ -65,9 +25,10 @@ export default DetailBox;
 const S = {
   DetailBoxContainer: styled.div`
     width: 500px;
-    height: 100vh;
+    height: calc(100vh - 70px);
     box-sizing: border-box;
-    padding-top: 70px;
+    margin-top: 70px;
+    /* padding-top: 70px; */
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -90,8 +51,12 @@ const S = {
     cursor: pointer;
     font-size: 20px;
   `,
-  Img: styled.img`
+  Img: styled.div`
     width: 400px;
+    height: 200px;
+    background-image: url('https://blog.kakaocdn.net/dn/o1KIw/btqu9mflPY6/rGk1mM3iugV1c6jj9Z3E80/img.jpg');
+    background-position: center;
+    background-size: cover;
     border-radius: 10px;
     margin: 80px 0 25px 0;
   `,
@@ -108,3 +73,37 @@ const S = {
     }
   `
 };
+
+//   const target = useRef(null);
+//   const [observe, unobserve] = useIntersectionObserver(() => {
+//     // 스타일을 넣어줄거야 박스 쉐도우를.
+//   });
+
+//   useEffect(() => {
+//     if (isLoading) {
+//       if (target == null) {
+//         unobserve(target.current);
+//       }
+//     } else {
+//       observe(target.current);
+//     }
+//   }, [isLoading]);
+
+//   const param = useParams();
+//   const { isLoading, isError, data } = useQuery(`${param.id}`, () => getPlace(param.id));
+
+//   if (isLoading) {
+//     return (
+//       <>
+//         <h1>로딩중</h1>
+//       </>
+//     );
+//   }
+
+//   if (isError) {
+//     return (
+//       <>
+//         <h1>오류가 발생하였습니다....!!!</h1>
+//       </>
+//     );
+//   }
