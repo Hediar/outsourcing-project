@@ -17,7 +17,6 @@ const MainMap = ({ list, area, category }) => {
   };
 
   useEffect(() => {
-    // console.log(filteredData);
     const container = document.getElementById('map');
     const options = {
       center: new kakao.maps.LatLng(33.3577838, 126.4624306),
@@ -54,7 +53,6 @@ const MainMap = ({ list, area, category }) => {
             kakao.maps.event.addListener(marker, 'click', function () {
               listOnclickHandler(position);
               map.setCenter(coords);
-              setBounds();
             });
 
             // LatLngBounds 객체에 좌표를 추가합니다
