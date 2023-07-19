@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { getBlogLists } from '../../api/blogLists';
 import { useQuery } from 'react-query';
-import Blog from '../Blog/Blog';
+import Blog from './BlogCard';
 import useIntersectionObserver from '../../hook/useIntersectionObserver';
 import { styled } from 'styled-components';
 import { useSelector } from 'react-redux';
+import BlogCard from './BlogCard';
 
 const ShowBlogList = () => {
   const [page, setPage] = useState(1);
@@ -33,13 +34,6 @@ const ShowBlogList = () => {
   }, [title]);
 
   useEffect(() => {
-    // console.log(target);
-    // if (target !== null && page === 1) {
-    //   console.log('0000', target);
-    //   observe(target.current);
-    // } else {
-    //   console.log('실행하지말라고;');
-    // }
     const N = data?.documents.length;
     const totalCount = data?.meta.total_count;
 
@@ -80,7 +74,7 @@ const ShowBlogList = () => {
   return (
     <S.BlogListContainer>
       {blogList?.map((item) => {
-        return <Blog key={item.idx} item={item} />;
+        return <BlogCard key={item.idx} item={item} />;
       })}
       <div ref={target} style={{ width: '100%', height: 30 }} />
     </S.BlogListContainer>

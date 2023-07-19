@@ -7,12 +7,14 @@ import { getPlaceList } from '../api/jejuHotPlace';
 import MainMap from '../components/MainMap/MainMap';
 import DetailBox from '../components/Detail/DetailBox';
 import { useSelector } from 'react-redux';
+import { getYtbLists } from '../api/ytbLists';
 
 const Main = () => {
   const [area, setArea] = useState('전체');
   const [category, setCategory] = useState('전체');
 
   const { data, isLoading, isError } = useQuery('placeList', getPlaceList);
+
   const { detailModalOn } = useSelector((state) => state).detailModal;
 
   if (isLoading) {

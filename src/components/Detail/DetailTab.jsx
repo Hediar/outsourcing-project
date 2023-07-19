@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import DetailInfor from './DetailInfor';
 import ShowBlogList from '../Blog/ShowBlogList';
 import { css, styled } from 'styled-components';
+import ShowYtbList from '../Youtube/ShowYtbList';
 
 const DetailTab = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -34,6 +35,18 @@ const DetailTab = () => {
           <ShowBlogList />
         </div>
       )
+    },
+    {
+      tabTitle: (
+        <S.TabContent select={activeIndex === 2 ? 'Y' : 'N'} onClick={() => tabClickHandler(2)}>
+          인기 동영상
+        </S.TabContent>
+      ),
+      tabContent: (
+        <div>
+          <ShowYtbList />
+        </div>
+      )
     }
   ];
   return (
@@ -55,7 +68,7 @@ const S = {
   `,
   TabContent: styled.li`
     float: left;
-    width: 50%;
+    width: 33%;
     text-align: center;
     cursor: pointer;
     padding: 10px 0;
