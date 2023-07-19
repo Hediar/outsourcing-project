@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import usePlaceData from '../../hook/usePlaceData';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setDetailModalData, setDetailModalOn } from '../../redux/modules/modalSlice';
 
 const { kakao } = window;
@@ -18,25 +18,17 @@ const MainMap = ({ list, area, category }) => {
 
   useEffect(() => {
     // console.log(filteredData);
+    const container = document.getElementById('map');
+    const options = {
+      center: new kakao.maps.LatLng(33.3577838, 126.4624306),
+      level: 9
+    };
+    const map = new kakao.maps.Map(container, options);
+
+    setMap(map);
+
     if (area === '전체' && category === '전체') {
-      const container = document.getElementById('map');
-      const options = {
-        center: new kakao.maps.LatLng(33.3577838, 126.4624306),
-        level: 9
-      };
-      const map = new kakao.maps.Map(container, options);
-
-      setMap(map);
     } else {
-      const container = document.getElementById('map');
-      const options = {
-        center: new kakao.maps.LatLng(33.346913, 125.1354225),
-        level: 8
-      };
-      const map = new kakao.maps.Map(container, options);
-
-      setMap(map);
-
       const geocoder = new kakao.maps.services.Geocoder();
       // const data = filteredData.map(())
       const bounds = new kakao.maps.LatLngBounds(); //추가한 코드
