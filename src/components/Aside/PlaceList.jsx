@@ -21,11 +21,6 @@ const PlaceList = ({ list, area, category }) => {
             {item.title}
           </S.ListItem>
         );
-        return (
-          <S.ListItem key={item.id} onClick={() => listOnclickHandler(item)}>
-            {item.title}
-          </S.ListItem>
-        );
       })}
       <S.ListEmptyBox></S.ListEmptyBox>
     </S.ListBox>
