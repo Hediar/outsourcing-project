@@ -112,7 +112,6 @@ const S = {
     margin-top: 70px;
     width: calc(100vw - 350px);
     height: calc(100vh - 70px);
-    /* background-color: royalblue; */
     display: flex;
   `,
   WelcomeMessage: styled.p`
