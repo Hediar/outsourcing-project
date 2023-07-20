@@ -9,7 +9,6 @@ const Header = ({ setArea }) => {
   return (
     <S.Header>
       <S.Logo />
-      {/* <S.JejuLogo /> */}
       <Weather />
       <S.SelectButtons>
         <S.ButtonStyle onClick={(e) => changeAreaButtonHandler(e.target.innerText)}>전체</S.ButtonStyle>
@@ -41,15 +40,6 @@ const S = {
     background-size: cover;
     background-position: center;
   `,
-  // JejuLogo: styled.div`
-  //   /* position: absolute;
-  //   left: 20%; */
-  //   width: 100px;
-  //   height: 70px;
-  //   background-image: url('https://w7.pngwing.com/pngs/952/1002/png-transparent-jeju-city-provinces-of-south-korea-cheongju-korea-strait-jeolla-province-yes-miscellaneous-text-city.png');
-  //   background-size: cover;
-  //   background-position: center;
-  // `,
   SelectButtons: styled.div`
     display: flex;
     position: absolute;

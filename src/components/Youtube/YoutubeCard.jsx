@@ -22,7 +22,6 @@ export default YoutubeCard;
 const S = {
   BlogContainer: styled.div`
     box-sizing: border-box;
-    /* border-top: 1px solid orange; */
     border-bottom: 1px solid orange;
     padding: 15px 0 15px 0;
     width: 430px;
@@ -70,7 +69,6 @@ const S = {
   `,
 
   ContentImgBox: styled.div`
-    /* width: 430px; */
     height: 240px;
     border-radius: 10px;
     overflow: hidden;
@@ -81,20 +79,15 @@ const S = {
   `,
   ContentImg: styled.img`
     width: 100%;
-    /* height: 100%; */
-    /* display: block; */
-    /* height: auto; */
   `,
 
   ContentLink: styled.a`
     transition: 0.2s;
     text-decoration: none;
     &:hover {
-      /* transform: scale(1.05); */
       transform: translateY(-5px);
 
       box-shadow: 0px 8px 10px -4px rgba(0, 0, 0, 0.2);
     }
-    /* margin: 10px; */
   `
 };

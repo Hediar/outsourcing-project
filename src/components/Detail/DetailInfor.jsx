@@ -51,12 +51,6 @@ const DetailInfor = () => {
 
 const S = {
   InfoBox: styled.div`
-    /* width: 400px; */
-    /* margin: 0px 20px;
-    display: flex;
-    flex-direction: column;
-    padding: 10px 0; */
-    /* overflow-y: scroll; */
     margin: 0 20px;
     height: calc(100vh - 385px);
     overflow-y: scroll;
@@ -82,7 +76,6 @@ const S = {
     justify-content: center;
   `,
   Title: styled.div`
-    /* line-height: 1; */
     color: orange;
 
     padding-top: 4px;

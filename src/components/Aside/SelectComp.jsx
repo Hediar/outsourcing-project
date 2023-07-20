@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Select from 'react-select';
 import { styled } from 'styled-components';
 
@@ -78,7 +78,6 @@ const SelectComp = ({ area, setArea, category, setCategory }) => {
 const S = {
   SelectBox: styled.div`
     width: 80%;
-    /* color: white; */
   `,
   StyledSelect: styled(Select)`
     color: white;

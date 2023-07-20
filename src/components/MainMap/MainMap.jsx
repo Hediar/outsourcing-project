@@ -1,10 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import usePlaceData from '../../hook/usePlaceData';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setDetailModalData, setDetailModalOn } from '../../redux/modules/modalSlice';
 
 const { kakao } = window;
+
+export const makeNewMap = () => {
+  const container = document.getElementById('map');
+  const options = {
+    center: new kakao.maps.LatLng(33.3577838, 126.4624306),
+    level: 9
+  };
+  const map = new kakao.maps.Map(container, options);
+  return map;
+};
 
 const MainMap = ({ list, area, category }) => {
   const [map, setMap] = useState(null);
@@ -17,13 +27,7 @@ const MainMap = ({ list, area, category }) => {
   };
 
   useEffect(() => {
-    const container = document.getElementById('map');
-    const options = {
-      center: new kakao.maps.LatLng(33.3577838, 126.4624306),
-      level: 9
-    };
-    const map = new kakao.maps.Map(container, options);
-
+    const map = makeNewMap();
     setMap(map);
 
     if (area === '전체' && category === '전체') {
@@ -80,15 +84,6 @@ const MainMap = ({ list, area, category }) => {
             });
 
             customOverlay.setMap(map);
-
-            // //변경한 코드
-            // const infowindow = new kakao.maps.InfoWindow({
-            //   content:
-            //     '<div style="color:white; width:150px;text-align:center;padding:6px 0; border-radius: 10px; background-color:orange; outline:none; border: none;">' +
-            //     position.title +
-            //     '</div>'
-            // });
-            // infowindow.open(map, marker);
 
             // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
             map.setCenter(markerPosition);
