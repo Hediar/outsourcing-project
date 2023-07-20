@@ -97,7 +97,6 @@ const S = {
   TabContent: styled.div`
     flex-grow: 1;
     float: left;
-    /* width: 100px; */
     text-align: center;
     cursor: pointer;
     padding: 10px 0;
