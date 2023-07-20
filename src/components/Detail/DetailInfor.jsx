@@ -38,7 +38,7 @@ const DetailInfor = () => {
         <FaSquareParking color="orange" size="20px" />
         <S.Title>주차여부</S.Title>
       </S.InfoTitle>
-      <S.Info>{detailModalData.detail?.parking}</S.Info>
+      <S.Info>{detailModalData.detail?.parking ? '가능' : '불가능'}</S.Info>
       <S.InfoTitle>
         <FaCircleInfo color="orange" size="20px" />
         <S.Title>소개</S.Title>
