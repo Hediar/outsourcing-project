@@ -21,9 +21,11 @@ const Weather = () => {
     return <h1>Error..</h1>;
   }
 
+  console.log(data);
+
   return (
     <>
-      <div className="wrap">
+      <S.Container>
         {Object.keys(data).length !== 0 && (
           <S.WeatherBox>
             <S.WeatherTextBox>
@@ -37,15 +39,23 @@ const Weather = () => {
             />
           </S.WeatherBox>
         )}
-      </div>
+      </S.Container>
     </>
   );
 };
 
 const S = {
+  Container: styled.div`
+    width: 200px;
+    position: absolute;
+    left: 75px;
+  `,
   WeatherBox: styled.div`
     display: flex;
+    justify-content: center;
     align-items: center;
+    margin-top: -3px;
+    margin-left: 5%;
   `,
   WeatherTextBox: styled.div`
     display: flex;
@@ -55,13 +65,15 @@ const S = {
   WeatherCityName: styled.span`
     font-weight: 900;
     font-size: 20px;
+    color: white;
   `,
   WeatherTemp: styled.span`
     margin: 0 10px;
+    color: white;
   `,
   WeatherIcon: styled.img`
     width: '70px';
-    /* margin-top: 30px; */
+    margin-top: 5px;
   `
 };
 

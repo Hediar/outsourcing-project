@@ -62,7 +62,7 @@ const S = {
     /* padding-top: 5%; */
     margin-top: 70px;
     width: 350px;
-    background-color: #ffa500;
+    background-color: white;
     box-sizing: border-box;
     height: calc(100vh - 70px);
     display: flex;
