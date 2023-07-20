@@ -27,12 +27,18 @@ const DetailInfor = () => {
         <FaEarthAsia color="orange" size="20px" />
         <S.Title>홈페이지</S.Title>
       </S.InfoTitle>
-      <S.Info>{detailModalData.detail?.Link}</S.Info>
+      <S.Info>
+        {detailModalData.detail?.Link == '홈페이지 정보 없음' ? (
+          detailModalData.detail?.Link
+        ) : (
+          <a href={detailModalData.detail?.Link}>{detailModalData.detail?.Link}</a>
+        )}
+      </S.Info>
       <S.InfoTitle>
         <FaSquareParking color="orange" size="20px" />
         <S.Title>주차여부</S.Title>
       </S.InfoTitle>
-      <S.Info>{detailModalData.detail?.parking}</S.Info>
+      <S.Info>{detailModalData.detail?.parking ? '가능' : '불가능'}</S.Info>
       <S.InfoTitle>
         <FaCircleInfo color="orange" size="20px" />
         <S.Title>소개</S.Title>
