@@ -3,55 +3,58 @@ import { styled } from 'styled-components';
 import DetailTab from './DetailTab';
 import { useDispatch, useSelector } from 'react-redux';
 import { setDetailModalOn } from '../../redux/modules/modalSlice';
-// import { gsap } from 'gsap';
+import { gsap } from 'gsap';
 
 const DetailBox = () => {
   const boxRef = useRef(null);
   const { detailModalData } = useSelector((state) => state.detailModal);
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   gsap.to(boxRef.current, 1, { transform: 'translateX(200px)', delay: 0.5, ease: 'ease' });
-  // });
+  useEffect(() => {
+    gsap.from(boxRef.current, 0.3, { transform: 'translateX(-500px)', delay: 0, ease: 'ease' });
+  }, []);
 
   return (
-    <S.MotionBox ref={boxRef}>
-      <S.DetailCloseBtn onClick={() => dispatch(setDetailModalOn(false))}> X </S.DetailCloseBtn>
-      <S.DetailBoxContainer>
-        <S.DetailInfoBox>
-          <S.Img />
-
-          <S.TitleArea>
-            <S.Title>{detailModalData.title}</S.Title>
-            <S.SubTitle>{detailModalData.category}</S.SubTitle>
-          </S.TitleArea>
-        </S.DetailInfoBox>
-        <S.DetailTabBox>
-          <DetailTab />
-        </S.DetailTabBox>
-      </S.DetailBoxContainer>
-    </S.MotionBox>
+    <>
+      <S.MotionBox ref={boxRef}>
+        <S.DetailCloseBtn onClick={() => dispatch(setDetailModalOn(false))}>X</S.DetailCloseBtn>
+        <S.DetailBoxContainer>
+          <S.DetailInfoBox>
+            <S.Img />
+            <S.TitleArea>
+              <S.Title>{detailModalData.title}</S.Title>
+              <S.SubTitle>{detailModalData.category}</S.SubTitle>
+            </S.TitleArea>
+          </S.DetailInfoBox>
+          <S.DetailTabBox>
+            <DetailTab />
+          </S.DetailTabBox>
+        </S.DetailBoxContainer>
+      </S.MotionBox>
+    </>
   );
 };
 
 export default DetailBox;
 
 const S = {
-  MotionBox: styled.div``,
+  MotionBox: styled.div`
+    left: 350px;
+    position: fixed;
+    background-color: white;
+    z-index: 2;
+  `,
   DetailInfoBox: styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
   `,
-  DetailTabBox: styled.div`
-    /* height: calc(100vh - 385px); */
-  `,
+  DetailTabBox: styled.div``,
 
   DetailBoxContainer: styled.div`
     width: 500px;
     height: calc(100vh - 70px);
     box-sizing: border-box;
     margin-top: 70px;
-    /* background-color: royalblue; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -63,7 +66,7 @@ const S = {
     height: 50px;
     position: absolute;
     z-index: 2;
-    left: 870px;
+    left: 520px;
     border-radius: 25px;
     top: calc((100vh - 50px) / 2);
     background-color: rgba(0, 0, 0, 0.2);
@@ -80,17 +83,13 @@ const S = {
     background-size: cover;
     border-radius: 10px;
     margin-top: 30px;
-    /* box-shadow: 0px 5px 5px -4px orange; */
   `,
   Title: styled.h3`
     font-size: 32px;
     font-weight: 600;
     width: 500px;
-    /* padding: 20px 0; */
     text-align: center;
     color: orange;
-    /* position: fixed; */
-    /* background-color: white; */
     &.test {
       box-shadow: 0px 5px 5px -4px gray;
     }
@@ -102,7 +101,6 @@ const S = {
     color: #2b2b2b;
   `,
   TitleArea: styled.div`
-    /* background-color: orange; */
     margin: 20px;
   `
 };
