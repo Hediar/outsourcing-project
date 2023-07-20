@@ -40,7 +40,10 @@ export default ShowYtbList;
 
 const S = {
   YtbListContainer: styled.div`
-    padding: 3%;
-    overflow: auto;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
   `
 };
