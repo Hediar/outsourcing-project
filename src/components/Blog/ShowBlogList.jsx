@@ -73,10 +73,10 @@ const ShowBlogList = () => {
 
   return (
     <S.BlogListContainer>
-      {blogList?.map((item) => {
-        return <BlogCard key={item.idx} item={item} />;
+      {blogList?.map((item, idx) => {
+        return <BlogCard key={idx} item={item} />;
       })}
-      <div ref={target} style={{ width: '100%', height: 30 }} />
+      <div ref={target} style={{ width: '100%', height: 100 }} />
     </S.BlogListContainer>
   );
 };
@@ -84,5 +84,11 @@ const ShowBlogList = () => {
 export default ShowBlogList;
 
 const S = {
-  BlogListContainer: styled.div``
+  BlogListContainer: styled.div`
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+  `
 };
