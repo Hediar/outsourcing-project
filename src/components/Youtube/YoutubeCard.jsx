@@ -2,7 +2,6 @@ import React from 'react';
 import { styled } from 'styled-components';
 
 const YoutubeCard = ({ item }) => {
-  console.log(item);
   return (
     <S.ContentLink href={`https://www.youtube.com/watch?v=${item.id.videoId}`}>
       <S.BlogContainer key={item.idx}>

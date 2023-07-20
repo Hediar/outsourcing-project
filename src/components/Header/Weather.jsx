@@ -21,8 +21,6 @@ const Weather = () => {
     return <h1>Error..</h1>;
   }
 
-  console.log(data);
-
   return (
     <>
       <S.Container>

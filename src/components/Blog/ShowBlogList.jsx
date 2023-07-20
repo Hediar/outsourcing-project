@@ -37,7 +37,6 @@ const ShowBlogList = () => {
   useEffect(() => {
     const N = data?.documents.length;
     const totalCount = data?.meta.total_count;
-    console.log(data);
 
     if (0 === N || totalCount <= N) {
       unobserve(target.current);

@@ -9,7 +9,6 @@ const { kakao } = window;
 const PlaceList = ({ list, area, category }) => {
   const [filteredData] = usePlaceData(list, area, category);
 
-  // console.log();
   const dispatch = useDispatch();
 
   const listOnclickHandler = (item) => {
@@ -106,7 +105,6 @@ const S = {
     text-align: center;
     cursor: pointer;
     transition: 0.3s;
-    /* padding: 30px 0; */
     display: flex;
     align-items: center;
     justify-content: center;

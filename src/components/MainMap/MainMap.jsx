@@ -65,6 +65,7 @@ const MainMap = ({ list, area, category }) => {
             kakao.maps.event.addListener(marker, 'click', function () {
               listOnclickHandler(position);
               map.setCenter(markerPosition);
+              map.setLevel(3);
             });
 
             // LatLngBounds 객체에 좌표를 추가합니다
@@ -87,6 +88,7 @@ const MainMap = ({ list, area, category }) => {
 
             // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
             map.setCenter(markerPosition);
+
             setBounds();
           }
         });
