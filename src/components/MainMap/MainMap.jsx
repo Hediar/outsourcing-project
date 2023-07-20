@@ -1,10 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import usePlaceData from '../../hook/usePlaceData';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setDetailModalData, setDetailModalOn } from '../../redux/modules/modalSlice';
 
 const { kakao } = window;
+
+export const makeNewMap = () => {
+  const container = document.getElementById('map');
+  const options = {
+    center: new kakao.maps.LatLng(33.3577838, 126.4624306),
+    level: 9
+  };
+  const map = new kakao.maps.Map(container, options);
+  return map;
+};
 
 const MainMap = ({ list, area, category }) => {
   const [map, setMap] = useState(null);
@@ -17,13 +27,7 @@ const MainMap = ({ list, area, category }) => {
   };
 
   useEffect(() => {
-    const container = document.getElementById('map');
-    const options = {
-      center: new kakao.maps.LatLng(33.3577838, 126.4624306),
-      level: 9
-    };
-    const map = new kakao.maps.Map(container, options);
-
+    const map = makeNewMap();
     setMap(map);
 
     if (area === '전체' && category === '전체') {
@@ -52,6 +56,9 @@ const MainMap = ({ list, area, category }) => {
              */
             kakao.maps.event.addListener(marker, 'click', function () {
               listOnclickHandler(position);
+
+              // 레벨 설정 및 좌표 중심으로 이동
+              map.setLevel(3);
               map.setCenter(coords);
             });
 

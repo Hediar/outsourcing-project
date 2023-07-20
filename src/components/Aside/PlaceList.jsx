@@ -3,6 +3,8 @@ import { styled } from 'styled-components';
 import usePlaceData from '../../hook/usePlaceData';
 import { useDispatch } from 'react-redux';
 import { setDetailModalData, setDetailModalOn } from '../../redux/modules/modalSlice';
+import { makeNewMap } from '../MainMap/MainMap';
+const { kakao } = window;
 
 const PlaceList = ({ list, area, category }) => {
   const [filteredData] = usePlaceData(list, area, category);
@@ -11,6 +13,34 @@ const PlaceList = ({ list, area, category }) => {
   const listOnclickHandler = (item) => {
     dispatch(setDetailModalData(item));
     dispatch(setDetailModalOn(true));
+
+    const map = makeNewMap();
+
+    const geocoder = new kakao.maps.services.Geocoder();
+    const callback = (result, status) => {
+      if (status === kakao.maps.services.Status.OK) {
+        const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+        const marker = new kakao.maps.Marker({
+          map: map,
+          position: coords
+        });
+        marker.setMap(map);
+
+        kakao.maps.event.addListener(marker, 'click', function () {
+          // 레벨 설정 및 좌표 중심으로 이동
+          map.setLevel(3);
+          map.setCenter(coords);
+        });
+        map.setLevel(3);
+        map.setCenter(coords);
+        const infowindow = new kakao.maps.InfoWindow({
+          content: '<div style="width:150px;text-align:center;padding:6px 0;">' + item.title + '</div>'
+        });
+        infowindow.open(map, marker);
+      }
+    };
+    geocoder.addressSearch(item.address, callback);
   };
 
   return (
