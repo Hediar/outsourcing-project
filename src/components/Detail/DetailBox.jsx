@@ -3,13 +3,18 @@ import { styled } from 'styled-components';
 import DetailTab from './DetailTab';
 import { useDispatch, useSelector } from 'react-redux';
 import { setDetailModalOn } from '../../redux/modules/modalSlice';
+// import { gsap } from 'gsap';
 
 const DetailBox = () => {
+  const boxRef = useRef(null);
   const { detailModalData } = useSelector((state) => state.detailModal);
   const dispatch = useDispatch();
+  // useEffect(() => {
+  //   gsap.to(boxRef.current, 1, { transform: 'translateX(200px)', delay: 0.5, ease: 'ease' });
+  // });
 
   return (
-    <>
+    <S.MotionBox ref={boxRef}>
       <S.DetailCloseBtn onClick={() => dispatch(setDetailModalOn(false))}> X </S.DetailCloseBtn>
       <S.DetailBoxContainer>
         <S.DetailInfoBox>
@@ -24,13 +29,14 @@ const DetailBox = () => {
           <DetailTab />
         </S.DetailTabBox>
       </S.DetailBoxContainer>
-    </>
+    </S.MotionBox>
   );
 };
 
 export default DetailBox;
 
 const S = {
+  MotionBox: styled.div``,
   DetailInfoBox: styled.div`
     display: flex;
     flex-direction: column;
