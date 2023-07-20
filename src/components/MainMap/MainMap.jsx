@@ -17,7 +17,6 @@ const MainMap = ({ list, area, category }) => {
   };
 
   useEffect(() => {
-    // console.log(filteredData);
     const container = document.getElementById('map');
     const options = {
       center: new kakao.maps.LatLng(33.3577838, 126.4624306),

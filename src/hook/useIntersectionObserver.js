@@ -7,11 +7,11 @@ const useIntersectionObserver = (callback) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             callback();
-            console.log('도달하였습니다');
+            // console.log('도달하였습니다');
           }
         });
       },
-      { threshold: 1 }
+      { threshold: 0.5 }
     )
   );
 
