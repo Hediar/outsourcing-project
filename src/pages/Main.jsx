@@ -32,7 +32,7 @@ const Main = () => {
       <S.Container>
         <S.AsideContainer>
           <S.Aside>
-            <S.WelcomeMessage>혼저옵서예 ~ 🍊</S.WelcomeMessage>
+            <S.WelcomeMessage>제주 핫플을 찾아봐유 ~ 🍊</S.WelcomeMessage>
             <SelectComp area={area} setArea={setArea} category={category} setCategory={setCategory} />
             <PlaceList list={data} area={area} category={category} />
           </S.Aside>
@@ -51,9 +51,10 @@ const S = {
     display: flex;
   `,
   WelcomeMessage: styled.p`
-    font-size: 2em;
-    font-weight: bold;
+    font-size: 24px;
+    font-weight: 700;
     margin: 20px 0;
+    color: orange;
   `,
   AsideContainer: styled.div`
     display: flex;
@@ -69,6 +70,7 @@ const S = {
     flex-direction: column;
     align-items: center;
     z-index: 3;
+    box-shadow: 1px 0px 10px 0px rgba(0, 0, 0, 0.2);
   `
 };
 
