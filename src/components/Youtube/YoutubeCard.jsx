@@ -2,18 +2,15 @@ import React from 'react';
 import { styled } from 'styled-components';
 
 const YoutubeCard = ({ item }) => {
+  console.log(item);
   return (
     <S.ContentLink href={`https://www.youtube.com/watch?v=${item.id.videoId}`}>
       <S.BlogContainer key={item.idx}>
+        <S.ContentImgBox>
+          <S.ContentImg src={item.snippet.thumbnails?.high.url} />
+        </S.ContentImgBox>
         <S.ContentBox>
-          <div>
-            <S.ContentTitle>{item.snippet.title}</S.ContentTitle>
-            <div>
-              <p>{item.snippet.channelTitle}</p>
-              <p>{item.snippet.publishTime.slice(0, 10)}</p>
-            </div>
-          </div>
-          <S.ContentImg src={item.snippet.thumbnails?.default.url} />
+          <S.ContentTitle>{item.snippet.title}</S.ContentTitle>
         </S.ContentBox>
       </S.BlogContainer>
     </S.ContentLink>
@@ -24,30 +21,80 @@ export default YoutubeCard;
 
 const S = {
   BlogContainer: styled.div`
-    border: black 1px solid;
-    padding: 20px;
-    margin-bottom: 20px;
-    height: 120px;
+    box-sizing: border-box;
+    /* border-top: 1px solid orange; */
+    border-bottom: 1px solid orange;
+    padding: 15px 0 15px 0;
+    width: 430px;
     overflow: hidden;
+    line-height: 1.4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  `,
+  InfoBox: styled.div`
+    width: 320px;
+  `,
+  ContentTextBox: styled.div`
+    margin: 8px 0 0 5px;
+    font-size: 14px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  `,
+  BlogInfoBox: styled.div`
+    margin-top: 15px;
+  `,
+  Caption: styled.div`
+    font-size: 10px;
+    color: #464646;
+    margin: 3px;
+    color: #c2c2c2;
   `,
 
-  ContentTitle: styled.p`
+  ContentTitle: styled.div`
+    margin: 10px 0 0 3px;
     font-size: 20px;
-    font-weight: 500;
-    margin: 20px 0;
+    word-break: keep-all;
+    width: 100%;
+    font-weight: 700;
   `,
   ContentBox: styled.div`
+    width: 100%;
+    margin: 0 10px;
     display: flex;
-    justify-content: space-between;
+    gap: 10px;
+  `,
+
+  ContentImgBox: styled.div`
+    /* width: 430px; */
+    height: 240px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: royalblue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   `,
   ContentImg: styled.img`
-    width: 130px;
-    height: 130px;
-    border-radius: 10px;
+    width: 100%;
+    /* height: 100%; */
+    /* display: block; */
+    /* height: auto; */
   `,
 
   ContentLink: styled.a`
+    transition: 0.2s;
     text-decoration: none;
-    color: black;
+    &:hover {
+      /* transform: scale(1.05); */
+      transform: translateY(-5px);
+
+      box-shadow: 0px 8px 10px -4px rgba(0, 0, 0, 0.2);
+    }
+    /* margin: 10px; */
   `
 };

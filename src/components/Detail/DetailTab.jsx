@@ -14,7 +14,7 @@ const DetailTab = () => {
   const tabContentArr = [
     {
       tabTitle: (
-        <S.TabContent select={activeIndex === 0 ? 'Y' : 'N'} onClick={() => tabClickHandler(0)}>
+        <S.TabContent key="0" select={activeIndex === 0 ? 'Y' : 'N'} onClick={() => tabClickHandler(0)}>
           상세정보
         </S.TabContent>
       ),
@@ -26,7 +26,7 @@ const DetailTab = () => {
     },
     {
       tabTitle: (
-        <S.TabContent select={activeIndex === 1 ? 'Y' : 'N'} onClick={() => tabClickHandler(1)}>
+        <S.TabContent key="1" select={activeIndex === 1 ? 'Y' : 'N'} onClick={() => tabClickHandler(1)}>
           블로그
         </S.TabContent>
       ),
@@ -38,7 +38,7 @@ const DetailTab = () => {
     },
     {
       tabTitle: (
-        <S.TabContent select={activeIndex === 2 ? 'Y' : 'N'} onClick={() => tabClickHandler(2)}>
+        <S.TabContent key="2" select={activeIndex === 2 ? 'Y' : 'N'} onClick={() => tabClickHandler(2)}>
           인기 동영상
         </S.TabContent>
       ),
@@ -85,9 +85,11 @@ const S = {
   `,
   TapContentArea: styled.div`
     padding-top: 10px;
+    /* width: 100%; */
     height: calc(100vh - 448px);
     /* background-color: royalblue; */
     overflow-y: scroll;
+    /* background-color: orange; */
     &::-webkit-scrollbar {
       display: none;
     }

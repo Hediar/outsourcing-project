@@ -4,6 +4,7 @@ import DetailTab from './DetailTab';
 import { useDispatch, useSelector } from 'react-redux';
 import { setDetailModalOn } from '../../redux/modules/modalSlice';
 import { gsap } from 'gsap';
+import { MdRestaurant } from 'react-icons/md';
 
 const DetailBox = () => {
   const boxRef = useRef(null);
@@ -18,6 +19,23 @@ const DetailBox = () => {
     dispatch(setDetailModalOn(false));
   };
 
+  const CategoryIcon = (item) => {
+    switch (item) {
+      case 'restaurant':
+        return (
+          <>
+            <MdRestaurant />
+            <S.SubTitle>식당</S.SubTitle>
+            <MdRestaurant />;
+          </>
+        );
+      case 'tourSpot':
+        return <S.SubTitle>{detailModalData.category}</S.SubTitle>;
+      default:
+        return <S.SubTitle>{detailModalData.category}</S.SubTitle>;
+    }
+  };
+
   return (
     <>
       <S.MotionBox ref={boxRef}>
@@ -27,7 +45,8 @@ const DetailBox = () => {
             <S.Img image={detailModalData.detail.imageURL} />
             <S.TitleArea>
               <S.Title>{detailModalData.title}</S.Title>
-              <S.SubTitle>{detailModalData.category}</S.SubTitle>
+
+              {CategoryIcon(detailModalData.category)}
             </S.TitleArea>
           </S.DetailInfoBox>
           <S.DetailTabBox>
@@ -81,8 +100,8 @@ const S = {
     font-size: 20px;
   `,
   Img: styled.div`
-    width: 400px;
-    height: 200px;
+    width: 430px;
+    height: 250px;
     background-image: url(${(props) => props.image});
     background-position: center;
     background-size: cover;
@@ -99,7 +118,8 @@ const S = {
       box-shadow: 0px 5px 5px -4px gray;
     }
   `,
-  SubTitle: styled.h3`
+  SubTitle: styled.div``,
+  SubTitleText: styled.h3`
     font-size: 16px;
     margin-top: 10px;
     text-align: center;
