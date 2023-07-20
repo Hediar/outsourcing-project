@@ -13,13 +13,18 @@ const DetailBox = () => {
     gsap.from(boxRef.current, 0.3, { transform: 'translateX(-500px)', delay: 0, ease: 'ease' });
   }, []);
 
+  const CloseModal = async () => {
+    await gsap.to(boxRef.current, 0.3, { transform: 'translateX(-500px)', delay: 0, ease: 'ease' });
+    dispatch(setDetailModalOn(false));
+  };
+
   return (
     <>
       <S.MotionBox ref={boxRef}>
-        <S.DetailCloseBtn onClick={() => dispatch(setDetailModalOn(false))}>X</S.DetailCloseBtn>
+        <S.DetailCloseBtn onClick={CloseModal}>X</S.DetailCloseBtn>
         <S.DetailBoxContainer>
           <S.DetailInfoBox>
-            <S.Img />
+            <S.Img image={detailModalData.detail.imageURL} />
             <S.TitleArea>
               <S.Title>{detailModalData.title}</S.Title>
               <S.SubTitle>{detailModalData.category}</S.SubTitle>
@@ -78,7 +83,7 @@ const S = {
   Img: styled.div`
     width: 400px;
     height: 200px;
-    background-image: url('https://blog.kakaocdn.net/dn/o1KIw/btqu9mflPY6/rGk1mM3iugV1c6jj9Z3E80/img.jpg');
+    background-image: url(${(props) => props.image});
     background-position: center;
     background-size: cover;
     border-radius: 10px;
