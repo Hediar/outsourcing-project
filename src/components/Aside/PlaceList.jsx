@@ -8,6 +8,8 @@ const { kakao } = window;
 
 const PlaceList = ({ list, area, category }) => {
   const [filteredData] = usePlaceData(list, area, category);
+
+  // console.log();
   const dispatch = useDispatch();
 
   const listOnclickHandler = (item) => {
@@ -21,9 +23,17 @@ const PlaceList = ({ list, area, category }) => {
       if (status === kakao.maps.services.Status.OK) {
         const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
+        //마커 이미지 생성
+        const imageSrc = 'https://ifh.cc/g/KPoAgp.png', // 마커이미지의 주소입니다
+          imageSize = new kakao.maps.Size(40, 40), // 마커이미지의 크기입니다
+          imageOption = { offset: new kakao.maps.Point(20, 40) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+        // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+        const markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+
         const marker = new kakao.maps.Marker({
-          map: map,
-          position: coords
+          position: coords,
+          image: markerImage
         });
         marker.setMap(map);
 
@@ -34,10 +44,20 @@ const PlaceList = ({ list, area, category }) => {
         });
         map.setLevel(3);
         map.setCenter(coords);
-        const infowindow = new kakao.maps.InfoWindow({
-          content: '<div style="width:150px;text-align:center;padding:6px 0;">' + item.title + '</div>'
+        const content =
+          `<div class="customoverlay" style="color:orange; border: 1px solid orange; background-color:white; padding: 8px; border-radius: 30px; margin-top:-75px; 
+            ">` +
+          item.title +
+          ` </div>`;
+
+        // 커스텀 오버레이가 표시될 위치입니다
+
+        const customOverlay = new kakao.maps.CustomOverlay({
+          position: coords,
+          content: content
         });
-        infowindow.open(map, marker);
+
+        customOverlay.setMap(map);
       }
     };
     geocoder.addressSearch(item.address, callback);
@@ -47,8 +67,8 @@ const PlaceList = ({ list, area, category }) => {
     <S.ListBox>
       {filteredData?.map((item) => {
         return (
-          <S.ListItem key={item.id} onClick={() => listOnclickHandler(item)}>
-            {item.title}
+          <S.ListItem key={item.id} onClick={() => listOnclickHandler(item)} img={item.detail.imageURL}>
+            <S.ListTitle>{item.title}</S.ListTitle>
           </S.ListItem>
         );
       })}
@@ -67,24 +87,50 @@ const S = {
       display: none;
     }
   `,
+  ListTitle: styled.div`
+    width: 100%;
+    height: 100%;
+    padding: 30px 0;
+    position: relative;
+    &:hover {
+      font-weight: 700;
+      color: white;
+    }
+  `,
   ListItem: styled.div`
     display: block;
     margin: 20px 40px;
+    border: 1px solid orange;
     font-size: 18px;
     background-color: white;
     text-align: center;
     cursor: pointer;
     transition: 0.3s;
-    border-radius: 20px;
-    padding: 30px 0;
+    /* padding: 30px 0; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
     &:hover {
       font-weight: bold;
       transform: scale(1.1);
-      background-color: #ffa500;
       color: white;
-      /* margin: 20px 0; */
       box-shadow: 0px 3px 3px 2px rgba(0, 0, 0, 0.1);
       margin: 30px 40px;
+      position: relative;
+      background-image: url(${(props) => props.img});
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      &::before {
+        content: '';
+        background-color: rgba(255, 165, 0, 1);
+        opacity: 0.9;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+      }
     }
     &:active {
       transform: scale(1);

@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { styled } from 'styled-components';
 import DetailTab from './DetailTab';
 import { useDispatch, useSelector } from 'react-redux';
 import { setDetailModalOn } from '../../redux/modules/modalSlice';
 import { gsap } from 'gsap';
-import { MdRestaurant } from 'react-icons/md';
+import { MdRestaurant, MdCoffee, MdFlag } from 'react-icons/md';
 
 const DetailBox = () => {
   const boxRef = useRef(null);
@@ -24,15 +24,27 @@ const DetailBox = () => {
       case 'restaurant':
         return (
           <>
-            <MdRestaurant />
-            <S.SubTitle>식당</S.SubTitle>
-            <MdRestaurant />;
+            <MdFlag color="white" />
+            <S.SubTitleText>RESTAURANT</S.SubTitleText>
+            <MdFlag color="white" />
           </>
         );
       case 'tourSpot':
-        return <S.SubTitle>{detailModalData.category}</S.SubTitle>;
+        return (
+          <>
+            <MdRestaurant color="white" />
+            <S.SubTitleText>TOUR SPOT</S.SubTitleText>
+            <MdRestaurant color="white" />
+          </>
+        );
       default:
-        return <S.SubTitle>{detailModalData.category}</S.SubTitle>;
+        return (
+          <>
+            <MdCoffee color="white" />
+            <S.SubTitleText>CAFE</S.SubTitleText>
+            <MdCoffee color="white" />
+          </>
+        );
     }
   };
 
@@ -45,8 +57,9 @@ const DetailBox = () => {
             <S.Img image={detailModalData.detail.imageURL} />
             <S.TitleArea>
               <S.Title>{detailModalData.title}</S.Title>
-
-              {CategoryIcon(detailModalData.category)}
+              <S.SubTitleArea>
+                <S.SubTitle>{CategoryIcon(detailModalData.category)}</S.SubTitle>
+              </S.SubTitleArea>
             </S.TitleArea>
           </S.DetailInfoBox>
           <S.DetailTabBox>
@@ -118,12 +131,22 @@ const S = {
       box-shadow: 0px 5px 5px -4px gray;
     }
   `,
-  SubTitle: styled.div``,
+  SubTitleArea: styled.div`
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    color: white;
+  `,
+  SubTitle: styled.div`
+    border-radius: 20px;
+    background-color: orange;
+    display: flex;
+    gap: 5px;
+    padding: 5px 10px 5px 10px;
+  `,
   SubTitleText: styled.h3`
     font-size: 16px;
-    margin-top: 10px;
-    text-align: center;
-    color: #2b2b2b;
+    color: white;
   `,
   TitleArea: styled.div`
     margin: 20px;

@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-const { kakao } = window;
 
 const usePlaceData = (list, area, category) => {
   const [dataList, setDataList] = useState([]);

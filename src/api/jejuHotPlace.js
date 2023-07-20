@@ -11,9 +11,4 @@ const getPlace = async (id) => {
   return response.data;
 };
 
-const getArea = async (id) => {
-  const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/jejuHotPlace/?areaid=${id}`);
-  return response.data;
-};
-
 export { getPlaceList, getPlace };

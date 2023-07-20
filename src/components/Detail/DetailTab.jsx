@@ -80,16 +80,11 @@ const S = {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* gap: 15px; */
-    /* height: 50px; */
   `,
   TapContentArea: styled.div`
     padding-top: 10px;
-    /* width: 100%; */
     height: calc(100vh - 448px);
-    /* background-color: royalblue; */
     overflow-y: scroll;
-    /* background-color: orange; */
     &::-webkit-scrollbar {
       display: none;
     }
@@ -97,7 +92,6 @@ const S = {
   TabContent: styled.div`
     flex-grow: 1;
     float: left;
-    /* width: 100px; */
     text-align: center;
     cursor: pointer;
     padding: 10px 0;
@@ -114,7 +108,6 @@ const S = {
         color: white;
       `}
     &:hover {
-      /* background-color: orange; */
       transform: scale(1.1);
     }
     &:active {

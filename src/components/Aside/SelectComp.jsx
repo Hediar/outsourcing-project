@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Select from 'react-select';
 import { styled } from 'styled-components';
 
@@ -20,12 +20,12 @@ const customStyles = {
   option: (provided) => ({
     ...provided,
     width: '100%',
-    // height: '50px',
     opacity: 0.8,
     cursor: 'pointer',
     textAlign: 'center',
     '&:hover': {
-      backgroundColor: '#FFD9AC'
+      border: '1px solid orange',
+      backgroundColor: 'white'
     }
   }),
   control: (provided) => ({
@@ -36,22 +36,23 @@ const customStyles = {
     textAlign: 'center',
     padding: '5px',
     cursor: 'pointer',
-    border: 'none',
+    border: '1px solid orange',
     '&::before': {
       border: 'none',
-      color: '#49c181'
+      outline: 'none'
     }
   }),
   indicatorSeparator: (provided) => ({
     ...provided,
-    display: 'none'
+    display: 'none',
+    backgroundColor: 'orange'
   })
 };
 
 const SelectComp = ({ area, setArea, category, setCategory }) => {
   return (
     <S.SelectBox>
-      <Select
+      <S.StyledSelect
         onChange={(e) => setArea(e.value)}
         isSearchable={false}
         options={areaOption}
@@ -61,7 +62,7 @@ const SelectComp = ({ area, setArea, category, setCategory }) => {
         styles={customStyles}
         label="Area"
       />
-      <Select
+      <S.StyledSelect
         onChange={(e) => setCategory(e.value)}
         placeholder="카테고리를 선택하세요."
         options={categoryOption}
@@ -77,6 +78,9 @@ const SelectComp = ({ area, setArea, category, setCategory }) => {
 const S = {
   SelectBox: styled.div`
     width: 80%;
+  `,
+  StyledSelect: styled(Select)`
+    color: white;
   `
 };
 
