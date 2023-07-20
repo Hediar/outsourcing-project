@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import { styled } from 'styled-components';
 import DetailTab from './DetailTab';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,13 +7,14 @@ import { setDetailModalOn } from '../../redux/modules/modalSlice';
 const DetailBox = () => {
   const { detailModalData } = useSelector((state) => state.detailModal);
   const dispatch = useDispatch();
+  console.log(detailModalData);
 
   return (
     <>
       <S.DetailCloseBtn onClick={() => dispatch(setDetailModalOn(false))}> X </S.DetailCloseBtn>
       <S.DetailBoxContainer>
         <S.DetailInfoBox>
-          <S.Img />
+          <S.Img image={detailModalData.detail.imageURL} />
 
           <S.TitleArea>
             <S.Title>{detailModalData.title}</S.Title>
@@ -69,7 +70,7 @@ const S = {
   Img: styled.div`
     width: 400px;
     height: 200px;
-    background-image: url('https://blog.kakaocdn.net/dn/o1KIw/btqu9mflPY6/rGk1mM3iugV1c6jj9Z3E80/img.jpg');
+    background-image: url(${(props) => props.image});
     background-position: center;
     background-size: cover;
     border-radius: 10px;
