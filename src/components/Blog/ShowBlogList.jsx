@@ -9,7 +9,7 @@ import BlogCard from './BlogCard';
 const ShowBlogList = () => {
   const [page, setPage] = useState(1);
   const target = useRef(null);
-  const card = useRef(null);
+  const cardTop = useRef(null);
   const [blogList, setBlogList] = useState([]);
 
   const { title } = useSelector((state) => state.detailModal.detailModalData);
@@ -30,7 +30,7 @@ const ShowBlogList = () => {
   };
 
   useEffect(() => {
-    card.current?.focus();
+    cardTop.current?.focus();
     getData();
   }, [title]);
 
@@ -74,7 +74,7 @@ const ShowBlogList = () => {
 
   return (
     <S.BlogListContainer>
-      <div ref={card} tabIndex={0} />
+      <div ref={cardTop} tabIndex={0} />
       {blogList?.map((item, idx) => {
         return <BlogCard key={idx} item={item} />;
       })}

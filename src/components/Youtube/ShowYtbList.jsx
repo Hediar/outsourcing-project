@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useQuery } from 'react-query';
 import { getYtbLists } from '../../api/ytbLists';
 import { useSelector } from 'react-redux';
@@ -7,6 +7,8 @@ import YoutubeCard from './YoutubeCard';
 
 const ShowYtbList = () => {
   const [ytbList, setYtbList] = useState([]);
+  const cardTop = useRef(null);
+
   const { title } = useSelector((state) => state.detailModal.detailModalData);
   const { isError, isLoading } = useQuery('ytbLists', () => getYtbLists(title));
 
@@ -16,6 +18,7 @@ const ShowYtbList = () => {
   };
 
   useEffect(() => {
+    cardTop.current?.focus();
     getData();
   }, [title]);
 
@@ -29,6 +32,7 @@ const ShowYtbList = () => {
 
   return (
     <S.YtbListContainer>
+      <div ref={cardTop} tabIndex={0} />
       {ytbList?.map((item) => {
         return <YoutubeCard key={item.idx} item={item} />;
       })}
@@ -40,7 +44,6 @@ export default ShowYtbList;
 
 const S = {
   YtbListContainer: styled.div`
-    margin-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
