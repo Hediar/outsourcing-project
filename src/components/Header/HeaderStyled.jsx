@@ -18,6 +18,9 @@ const S = {
     background-image: url('https://velog.velcdn.com/images/lhb971219/post/c42592a0-754a-43d9-85fc-3a4287975ab6/image.png');
     background-size: cover;
     background-position: center;
+    &:hover {
+      cursor: pointer;
+    }
   `,
   SelectButtons: styled.div`
     position: fixed;
