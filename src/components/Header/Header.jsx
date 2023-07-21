@@ -16,7 +16,6 @@ const Header = ({ setArea }) => {
     dispatch(setDetailModalOn(false));
     dispatch(setWeatherModalOn(false));
     setArea('전체');
-    //window.location.reload();
   };
 
   return (
