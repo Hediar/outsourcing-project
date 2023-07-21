@@ -66,7 +66,6 @@ const SelectComp = ({ area, setArea, category, setCategory }) => {
         onChange={(e) => setCategory(e.value)}
         isSearchable={false}
         placeholder="카테고리를 선택하세요."
-        isSearchable={false}
         options={categoryOption}
         value={categoryOption.filter((option) => {
           return option.value === category;
