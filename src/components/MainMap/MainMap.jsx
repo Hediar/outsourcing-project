@@ -16,7 +16,7 @@ export const makeNewMap = () => {
   return map;
 };
 
-const addressToCoords = (map, title, address) => {
+export const addressToCoords = (map, title, address) => {
   return new Promise((resolve) => {
     const geocoder = new kakao.maps.services.Geocoder();
 
@@ -82,63 +82,19 @@ const MainMap = ({ list, area, category }) => {
   useEffect(() => {
     const map = makeNewMap();
     setMap(map);
-    // console.log(
-    //   addressToCoords(map, filteredData[0]?.title, filteredData[0]?.address).then((data) =>
-    //     console.log('pormise', data)
-    //   )
-    // );
 
     if (area === '전체' && category === '전체') {
     } else {
-      // const geocoder = new kakao.maps.services.Geocoder();
       const bounds = new kakao.maps.LatLngBounds(); //추가한 코드
 
       filteredData.forEach((position) => {
         //추가한 코드
         // 주소로 좌표를 검색합니다
-        addressToCoords(map, position.title, position.address).then((markerPosition) => {
-          const imageSrc = 'https://ifh.cc/g/KPoAgp.png', // 마커이미지의 주소입니다
-            imageSize = new kakao.maps.Size(40, 40), // 마커이미지의 크기입니다
-            imageOption = { offset: new kakao.maps.Point(20, 40) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
-          // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
-          const markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
-
-          // 결과값으로 받은 위치를 마커로 표시합니다
-          const marker = new kakao.maps.Marker({
-            position: markerPosition,
-            image: markerImage
-          });
-          marker.setMap(map); //추가한 코드
-
-          /**
-           * marker 클릭 이벤트
-           */
-          kakao.maps.event.addListener(marker, 'click', function () {
-            listOnclickHandler(position);
-            map.setCenter(markerPosition);
-            map.setLevel(3);
-          });
-
-          // LatLngBounds 객체에 좌표를 추가합니다
-
-          const content =
-            `<div class="customoverlay" style="color:orange; border: 1px solid orange; background-color:white; padding: 8px; border-radius: 30px; margin-top:-75px;
-            ">` +
-            position.title +
-            ` </div>`;
-
-          // 커스텀 오버레이가 표시될 위치입니다
-
-          const customOverlay = new kakao.maps.CustomOverlay({
-            position: markerPosition,
-            content: content
-          });
-
-          customOverlay.setMap(map);
-
-          bounds.extend(markerPosition); //추가한 코드, 현재 코드에서 좌표정보는 point[i]가 아닌 markerPosition이다.
-          setBounds(markerPosition);
+        makeNewMarker(map, position.title, position.address);
+        addressToCoords(map, position.title, position.address).then((coords) => {
+          bounds.extend(coords); //추가한 코드, 현재 코드에서 좌표정보는 point[i]가 아닌 markerPosition이다.
+          setBounds(coords);
           map.setBounds(bounds);
         });
       });
