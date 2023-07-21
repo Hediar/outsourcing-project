@@ -1,7 +1,6 @@
 import React from 'react';
 import Weather from './Weather';
 import { S } from './HeaderStyled';
-import { useDispatch } from 'react-redux';
 
 const Header = ({ setArea }) => {
   const changeAreaButtonHandler = (selectedArea) => {
