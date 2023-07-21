@@ -3,6 +3,7 @@ import { get5DaysOfWeather } from '../../api/weather';
 import { useQuery } from 'react-query';
 import { gsap } from 'gsap';
 import { styled } from 'styled-components';
+import Loading from '../Loading/Loading';
 import { useDispatch } from 'react-redux';
 import { setWeatherModalOn } from '../../redux/modules/modalSlice';
 
@@ -12,7 +13,7 @@ const WeatherModal = () => {
 
   const { data, isError, isLoading } = useQuery('5DaysOfWeather', get5DaysOfWeather, {
     onSuccess: () => {
-      console.log('성공', data);
+      // console.log('성공', data);
     }
   });
 
@@ -26,14 +27,14 @@ const WeatherModal = () => {
   }, []);
 
   if (isLoading) {
-    return <S.WeatherModalContainer>Loading..</S.WeatherModalContainer>;
+    return <Loading />;
   }
   if (isError) {
     return <S.WeatherModalContainer>Error..</S.WeatherModalContainer>;
   }
   const everyDays = data.list.map((item) => item.dt_txt.substr(0, 10));
   const days = [...new Set(everyDays)];
-  console.log('days', days);
+  // console.log('days', days);
 
   const firstDayData = [];
   const secondDayData = [];

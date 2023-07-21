@@ -9,6 +9,7 @@ import DetailBox from '../components/Detail/DetailBox';
 import { useSelector } from 'react-redux';
 import Header from '../components/Header/Header';
 import WeatherModal from '../components/Header/WeatherModal';
+import Loading from '../components/Loading/Loading';
 
 const Main = () => {
   const [area, setArea] = useState('전체');
@@ -20,7 +21,7 @@ const Main = () => {
   const { weatherModalOn } = useSelector((state) => state.detailModal);
 
   if (isLoading) {
-    return <div>로딩중</div>;
+    return <Loading />;
   }
 
   if (isError) {
@@ -29,6 +30,7 @@ const Main = () => {
 
   return (
     <>
+      {/* <Loading /> */}
       <Header setArea={setArea} />
       <S.Container>
         <S.AsideContainer>
@@ -40,7 +42,6 @@ const Main = () => {
           {detailModalOn ? <DetailBox /> : null}
         </S.AsideContainer>
         {weatherModalOn ? <WeatherModal /> : null}
-
         <MainMap list={data} area={area} category={category}></MainMap>
       </S.Container>
     </>

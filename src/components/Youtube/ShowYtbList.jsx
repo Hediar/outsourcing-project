@@ -4,6 +4,7 @@ import { getYtbLists } from '../../api/ytbLists';
 import { useSelector } from 'react-redux';
 import YoutubeCard from './YoutubeCard';
 import { S } from './YoutubeStyled';
+import Loading from '../Loading/Loading';
 
 const ShowYtbList = () => {
   const [ytbList, setYtbList] = useState([]);
@@ -23,7 +24,11 @@ const ShowYtbList = () => {
   }, [title]);
 
   if (isLoading || ytbList.length == 0) {
-    return <div>로딩중..</div>;
+    return (
+      <S.YtbListContainer>
+        <Loading />
+      </S.YtbListContainer>
+    );
   }
 
   if (isError) {
