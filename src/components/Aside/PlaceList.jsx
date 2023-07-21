@@ -6,7 +6,7 @@ import { S } from './AsideStyled';
 import { makeNewMap, makeNewMarker } from '../MainMap/MapFunction';
 const { kakao } = window;
 
-const PlaceList = ({ list, area, category }) => {
+const PlaceList = ({ list, area, category, setArea }) => {
   const [filteredData] = usePlaceData(list, area, category);
 
   const dispatch = useDispatch();
@@ -18,6 +18,13 @@ const PlaceList = ({ list, area, category }) => {
 
   const listOnclickHandler = (item) => {
     openModal(item);
+    if (item.areaId === 'Aewol') {
+      setArea('애월');
+    } else if (item.areaId === 'Andeok') {
+      setArea('안덕');
+    } else {
+      setArea('조천');
+    }
 
     const map = makeNewMap();
     const marker = makeNewMarker(map, item.title, item.address);

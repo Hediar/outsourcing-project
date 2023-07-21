@@ -36,7 +36,7 @@ const Main = () => {
           <S.Aside>
             <S.WelcomeMessage>제주 핫플을 찾아봐유 ~ 🍊</S.WelcomeMessage>
             <SelectComp area={area} setArea={setArea} category={category} setCategory={setCategory} />
-            <PlaceList list={data} area={area} category={category} />
+            <PlaceList list={data} area={area} category={category} setArea={setArea} />
           </S.Aside>
           {detailModalOn ? <DetailBox /> : null}
         </S.AsideContainer>
@@ -52,6 +52,7 @@ const S = {
   Container: styled.div`
     height: calc(100vh - 70px);
     display: flex;
+    width: 100vw;
   `,
   WelcomeMessage: styled.p`
     font-size: 24px;
