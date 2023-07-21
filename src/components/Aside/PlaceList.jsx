@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import usePlaceData from '../../hook/usePlaceData';
 import { useDispatch, useSelector } from 'react-redux';
 import { setDetailModalData, setDetailModalOn } from '../../redux/modules/modalSlice';
@@ -12,12 +12,6 @@ const PlaceList = ({ list, area, category, setArea }) => {
   const dispatch = useDispatch();
   const modalTitle = useSelector((state) => state.detailModal.detailModalData.title);
   const modalState = useSelector((state) => state.detailModal.detailModalOn);
-
-  const checkSelected = (title) => {
-    if (modalTitle === title && modalState) {
-      return true;
-    }
-  };
 
   const openModal = (item) => {
     dispatch(setDetailModalData(item));
@@ -45,14 +39,14 @@ const PlaceList = ({ list, area, category, setArea }) => {
   return (
     <S.ListBox>
       {filteredData?.map((item) => {
-        const select = checkSelected(item);
-        console.log(select);
         return (
           <S.ListItem
             key={item.id}
-            onClick={() => listOnclickHandler(item)}
+            onClick={() => {
+              listOnclickHandler(item);
+            }}
             img={item.detail.imageURL}
-            isSelected={select}
+            isSelected={item.title === modalTitle && modalState}
           >
             <S.ListTitle>{item.title}</S.ListTitle>
           </S.ListItem>
