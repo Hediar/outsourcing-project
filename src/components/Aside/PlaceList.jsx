@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import usePlaceData from '../../hook/usePlaceData';
 import { useDispatch, useSelector } from 'react-redux';
 import { setDetailModalData, setDetailModalOn } from '../../redux/modules/modalSlice';
@@ -46,6 +46,7 @@ const PlaceList = ({ list, area, category, setArea }) => {
     <S.ListBox>
       {filteredData?.map((item) => {
         const select = checkSelected(item);
+        console.log(select);
         return (
           <S.ListItem
             key={item.id}
