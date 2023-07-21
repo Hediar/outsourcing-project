@@ -15,7 +15,9 @@ const Main = () => {
   const [area, setArea] = useState('전체');
   const [category, setCategory] = useState('전체');
 
-  const { data, isLoading, isError } = useQuery('placeList', getPlaceList);
+  const { data, isLoading, isError } = useQuery('placeList', getPlaceList, {
+    staleTime: Infinity
+  });
 
   const { detailModalOn } = useSelector((state) => state.detailModal);
   const { weatherModalOn } = useSelector((state) => state.detailModal);
@@ -30,7 +32,6 @@ const Main = () => {
 
   return (
     <>
-      {/* <Loading /> */}
       <Header setArea={setArea} />
       <S.Container>
         <S.AsideContainer>

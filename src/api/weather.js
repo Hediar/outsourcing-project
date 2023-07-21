@@ -13,7 +13,6 @@ const get5DaysOfWeather = async () => {
     `https://api.openweathermap.org/data/2.5/forecast?lat=33.4930566&lon=126.5130589&appid=${process.env.REACT_APP_WEATHER_API}`
   );
 
-  // console.log(response.data);
   return response.data;
 };
 

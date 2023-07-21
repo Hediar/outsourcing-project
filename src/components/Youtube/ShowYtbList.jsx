@@ -38,8 +38,8 @@ const ShowYtbList = () => {
   return (
     <S.YtbListContainer>
       <div ref={cardTop} tabIndex={0} />
-      {ytbList?.map((item) => {
-        return <YoutubeCard key={item.idx} item={item} />;
+      {ytbList?.map((item, index) => {
+        return <YoutubeCard key={index} item={item} />;
       })}
       <div style={{ width: '100%', height: 100 }} />
     </S.YtbListContainer>

@@ -23,12 +23,9 @@ const MainMap = ({ list, area, category }) => {
 
     if (area === '전체' && category === '전체') {
     } else {
-      const bounds = new kakao.maps.LatLngBounds(); //추가한 코드
+      const bounds = new kakao.maps.LatLngBounds();
 
       filteredData.forEach((position) => {
-        //추가한 코드
-        // 주소로 좌표를 검색합니다
-
         const marker = makeNewMarker(map, position.title, position.address);
         marker.then((item) => {
           kakao.maps.event.addListener(item, 'click', function () {
@@ -37,7 +34,7 @@ const MainMap = ({ list, area, category }) => {
         });
 
         addressToCoords(position.address).then((coords) => {
-          bounds.extend(coords); //추가한 코드, 현재 코드에서 좌표정보는 point[i]가 아닌 markerPosition이다.
+          bounds.extend(coords);
           map.setBounds(bounds);
         });
       });

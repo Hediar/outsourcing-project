@@ -61,7 +61,7 @@ const WeatherModal = () => {
         </S.WeatherList>
         {weatherData?.map((item, i) => {
           return (
-            <S.WeatherList>
+            <S.WeatherList key={days[i]}>
               <S.WeatherDate>{days[i]}</S.WeatherDate>
               <S.WeatherItem>{tempMax(item.Max)}°C</S.WeatherItem>
               <S.WeatherItem>{tempMin(item.Min)}°C</S.WeatherItem>
