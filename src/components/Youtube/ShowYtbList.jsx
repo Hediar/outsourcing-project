@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useQuery } from 'react-query';
 import { getYtbLists } from '../../api/ytbLists';
 import { useSelector } from 'react-redux';
-import { styled } from 'styled-components';
 import YoutubeCard from './YoutubeCard';
+import { S } from './YoutubeStyled';
 
 const ShowYtbList = () => {
   const [ytbList, setYtbList] = useState([]);
@@ -36,17 +36,9 @@ const ShowYtbList = () => {
       {ytbList?.map((item) => {
         return <YoutubeCard key={item.idx} item={item} />;
       })}
+      <div style={{ width: '100%', height: 100 }} />
     </S.YtbListContainer>
   );
 };
 
 export default ShowYtbList;
-
-const S = {
-  YtbListContainer: styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 25px;
-  `
-};

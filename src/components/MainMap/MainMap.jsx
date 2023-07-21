@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { styled } from 'styled-components';
 import usePlaceData from '../../hook/usePlaceData';
 import { useDispatch } from 'react-redux';
 import { setDetailModalData, setDetailModalOn } from '../../redux/modules/modalSlice';
+import { S } from './MainMapStyled';
 
 const { kakao } = window;
 
@@ -111,27 +111,3 @@ const MainMap = ({ list, area, category }) => {
 };
 
 export default MainMap;
-
-const S = {
-  Container: styled.div`
-    margin-top: 70px;
-    width: calc(100vw - 350px);
-    height: calc(100vh - 70px);
-    display: flex;
-  `,
-  WelcomeMessage: styled.p`
-    font-size: 2em;
-    font-weight: bold;
-    margin: 20px 0;
-  `,
-  Aside: styled.aside`
-    padding-top: 5%;
-    width: 350px;
-    background-color: #e5871a;
-    box-sizing: border-box;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  `
-};
