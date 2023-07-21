@@ -64,6 +64,7 @@ const SelectComp = ({ area, setArea, category, setCategory }) => {
       />
       <S.StyledSelect
         onChange={(e) => setCategory(e.value)}
+        isSearchable={false}
         placeholder="카테고리를 선택하세요."
         options={categoryOption}
         value={categoryOption.filter((option) => {
