@@ -2,9 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import { getBlogLists } from '../../api/blogLists';
 import { useQuery } from 'react-query';
 import useIntersectionObserver from '../../hook/useIntersectionObserver';
-import { styled } from 'styled-components';
 import { useSelector } from 'react-redux';
 import BlogCard from './BlogCard';
+import { S } from './BlogStyled';
 
 const ShowBlogList = () => {
   const [page, setPage] = useState(1);
@@ -84,12 +84,3 @@ const ShowBlogList = () => {
 };
 
 export default ShowBlogList;
-
-const S = {
-  BlogListContainer: styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 25px;
-  `
-};
