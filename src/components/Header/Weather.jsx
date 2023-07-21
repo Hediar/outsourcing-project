@@ -4,6 +4,7 @@ import { styled } from 'styled-components';
 import { getcurrentWeather } from '../../api/weather';
 import { useDispatch, useSelector } from 'react-redux';
 import { setWeatherModalOn } from '../../redux/modules/modalSlice';
+import Loading from '../Loading/Loading';
 
 const Weather = () => {
   const dispatch = useDispatch();
@@ -17,10 +18,10 @@ const Weather = () => {
   });
 
   const { weatherModalOn } = useSelector((state) => state.detailModal);
-  console.log(weatherModalOn);
+  // console.log(weatherModalOn);
 
   if (isLoading) {
-    return <h1>Loading..</h1>;
+    return <Loading />;
   }
   if (isError) {
     return <h1>Error..</h1>;
