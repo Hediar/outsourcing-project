@@ -25,15 +25,14 @@ const PlaceList = ({ list, area, category, setArea }) => {
   };
 
   const listOnclickHandler = (item) => {
-    openModal(item);
-    if (item.areaId === 'Aewol') {
+    if (item.areaid === 'Aewol') {
       setArea('애월');
-    } else if (item.areaId === 'Andeok') {
+    } else if (item.areaid === 'Andeok') {
       setArea('안덕');
     } else {
       setArea('조천');
     }
-
+    openModal(item);
     const map = makeNewMap();
     const marker = makeNewMarker(map, item.title, item.address);
     marker.then((mark) => {

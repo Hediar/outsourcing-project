@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { get5DaysOfWeather } from '../../api/weather';
 import { useQuery } from 'react-query';
 import { gsap } from 'gsap';
-import { styled } from 'styled-components';
+import { css, styled } from 'styled-components';
 import Loading from '../Loading/Loading';
 import { useDispatch } from 'react-redux';
 import { setWeatherModalOn } from '../../redux/modules/modalSlice';
@@ -53,71 +53,48 @@ const WeatherModal = () => {
   return (
     <>
       <S.WeatherModalContainer ref={boxRef}>
+        <S.WeatherList>
+          <S.WeatherDate title="Y">날짜</S.WeatherDate>
+          <S.WeatherItem title="Y">최고</S.WeatherItem>
+          <S.WeatherItem title="Y">최저</S.WeatherItem>
+          <S.WeatherItem></S.WeatherItem>
+        </S.WeatherList>
         {weatherData?.map((item, i) => {
           return (
-            <div>
-              <span>{days[i]}</span>
-              <span>{tempMax(item.Max)}</span>
-              <span>{tempMin(item.Min)}</span>
-              <img src={`https://openweathermap.org/img/wn/${item.Icon}@2x.png`} alt="Image" width="60px" />
-            </div>
+            <S.WeatherList>
+              <S.WeatherDate>{days[i]}</S.WeatherDate>
+              <S.WeatherItem>{tempMax(item.Max)}°C</S.WeatherItem>
+              <S.WeatherItem>{tempMin(item.Min)}°C</S.WeatherItem>
+              <S.ImgBox img={`https://openweathermap.org/img/wn/${item.Icon}@2x.png`} />
+            </S.WeatherList>
           );
         })}
       </S.WeatherModalContainer>
+      <S.Bg onClick={CloseModal}></S.Bg>
+      <S.Bg onClick={CloseModal}></S.Bg>
     </>
   );
-
-  // return (
-  //   <S.Container>
-  //     <S.WeatherModalContainer ref={boxRef}>
-  //       <div>
-  //         <div>
-  //           {days[1]}
-  //           {tempMax(firstDayData)}°C
-  //           {tempMin(firstDayData)}°C
-  //           <img src={`https://openweathermap.org/img/wn/${firstDayData[2]}@2x.png`} alt="Image" width="60px" />
-  //         </div>
-  //         <div>
-  //           {days[2]}
-  //           {tempMax(secondDayData)}°C
-  //           {tempMin(secondDayData)}°C
-  //           <img src={`https://openweathermap.org/img/wn/${secondDayData[2]}@2x.png`} alt="Image" width="60px" />
-  //         </div>
-  //         <div>
-  //           {days[3]}
-  //           {tempMax(thirdDayData)}°C
-  //           {tempMin(thirdDayData)}°C
-  //           <img src={`https://openweathermap.org/img/wn/${thirdDayData[2]}@2x.png`} alt="Image" width="60px" />
-  //         </div>
-  //         <div>
-  //           {days[4]}
-  //           {tempMax(fourthDayData)}°C
-  //           {tempMin(fourthDayData)}°C
-  //           <img src={`https://openweathermap.org/img/wn/${fourthDayData[2]}@2x.png`} alt="Image" width="60px" />
-  //         </div>
-  //         <div>
-  //           {days[5]}
-  //           {tempMax(fifthDayData)}°C
-  //           {tempMin(fifthDayData)}°C
-  //           <img src={`https://openweathermap.org/img/wn/${fifthDayData[2]}@2x.png`} alt="Image" width="60px" />
-  //         </div>
-  //       </div>
-  //     </S.WeatherModalContainer>
-  //     <S.DetailCloseBtn onClick={CloseModal}>X</S.DetailCloseBtn>
-  //     <S.Bg onClick={CloseModal}></S.Bg>
-  //   </S.Container>
-  // );
 };
 
 const S = {
+  ImgBox: styled.div`
+    width: 50px;
+    height: 50px;
+    background-image: url(${(props) => props.img});
+    background-position: center;
+    background-size: cover;
+  `,
   Container: styled.div``,
   WeatherModalContainer: styled.div`
     position: fixed;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.8);
+
     z-index: 9;
     right: 10px;
     top: 75px;
     padding: 10px;
+    width: 330px;
+    border-radius: 10px;
   `,
   Bg: styled.div`
     position: fixed;
@@ -127,17 +104,34 @@ const S = {
     right: 0;
     z-index: 8;
   `,
-  DetailCloseBtn: styled.button`
-    width: 50px;
-    height: 50px;
-    z-index: 999999;
-    position: absolute;
-    border-radius: 25px;
-    background-color: rgba(0, 0, 0, 0.2);
-    border: none;
-    cursor: pointer;
-    color: white;
-    font-size: 20px;
+  WeatherItem: styled.span`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    margin: 10px;
+    ${(props) =>
+      props.title === 'Y' &&
+      css`
+        color: orange;
+        font-size: 18px;
+      `}
+  `,
+  WeatherDate: styled.span`
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    ${(props) =>
+      props.title === 'Y' &&
+      css`
+        color: orange;
+        font-size: 18px;
+      `}
+  `,
+  WeatherList: styled.div`
+    display: flex;
+    align-items: center;
   `
 };
 
