@@ -12,7 +12,7 @@ const S = {
   Logo: styled.div`
     position: absolute;
     left: 100px;
-    top: 20%;
+    top: 20px;
     width: 150px;
     height: 30px;
     background-image: url('https://velog.velcdn.com/images/lhb971219/post/c42592a0-754a-43d9-85fc-3a4287975ab6/image.png');

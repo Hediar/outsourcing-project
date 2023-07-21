@@ -32,7 +32,6 @@ const WeatherModal = () => {
     return <S.WeatherModalContainer>Error..</S.WeatherModalContainer>;
   }
   const everyDays = data.list.map((item) => item.dt_txt.substr(0, 10));
-
   const days = [...new Set(everyDays)];
   console.log('days', days);
 
@@ -70,14 +69,14 @@ const WeatherModal = () => {
     }
   });
 
+  console.log(fourthDayData);
+
   const tempMax = (a) => {
     const numOnlyArr = a.filter((item) => typeof item == 'number');
-    console.log(numOnlyArr);
     return Math.round((Math.max(...numOnlyArr) - 273.15) * 10) / 10;
   };
   const tempMin = (b) => {
     const numOnlyArr = b.filter((item) => typeof item == 'number');
-    console.log(numOnlyArr);
     return Math.round((Math.min(...numOnlyArr) - 273.15) * 10) / 10;
   };
 
@@ -146,7 +145,6 @@ const S = {
     height: 50px;
     z-index: 999999;
     position: absolute;
-
     border-radius: 25px;
     background-color: rgba(0, 0, 0, 0.2);
     border: none;

@@ -18,7 +18,6 @@ const Main = () => {
 
   const { detailModalOn } = useSelector((state) => state.detailModal);
   const { weatherModalOn } = useSelector((state) => state.detailModal);
-  console.log(weatherModalOn);
 
   if (isLoading) {
     return <div>로딩중</div>;

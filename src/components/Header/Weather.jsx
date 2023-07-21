@@ -17,7 +17,6 @@ const Weather = () => {
   });
 
   const { weatherModalOn } = useSelector((state) => state.detailModal);
-  console.log(weatherModalOn);
 
   if (isLoading) {
     return <h1>Loading..</h1>;

@@ -7,6 +7,7 @@ import { setDetailModalOn, setWeatherModalOn } from '../../redux/modules/modalSl
 const Header = ({ setArea }) => {
   const changeAreaButtonHandler = (selectedArea) => {
     setArea(selectedArea);
+    dispatch(setDetailModalOn(false));
   };
 
   const dispatch = useDispatch();

@@ -10,7 +10,6 @@ const DetailBox = () => {
   const boxRef = useRef(null);
   const { detailModalData } = useSelector((state) => state.detailModal);
   const dispatch = useDispatch();
-  console.log(detailModalData);
   useEffect(() => {
     gsap.from(boxRef.current, 0.3, { transform: 'translateX(-500px)', delay: 0, ease: 'ease' });
   }, []);
