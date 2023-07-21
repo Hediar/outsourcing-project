@@ -16,7 +16,7 @@ export const makeNewMap = () => {
   return map;
 };
 
-export const addressToCoords = (map, title, address) => {
+export const addressToCoords = (address) => {
   return new Promise((resolve) => {
     const geocoder = new kakao.maps.services.Geocoder();
 
@@ -30,43 +30,44 @@ export const addressToCoords = (map, title, address) => {
   });
 };
 
-export const makeNewMarker = (map, title, address) => {
-  addressToCoords(map, title, address).then((coords) => {
-    const imageSrc = 'https://ifh.cc/g/KPoAgp.png', // 마커이미지의 주소입니다
-      imageSize = new kakao.maps.Size(40, 40), // 마커이미지의 크기입니다
-      imageOption = { offset: new kakao.maps.Point(20, 40) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+export const makeNewMarker = async (map, title, address) => {
+  const coords = await addressToCoords(address);
 
-    // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
-    const markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+  const imageSrc = 'https://ifh.cc/g/KPoAgp.png', // 마커이미지의 주소입니다
+    imageSize = new kakao.maps.Size(40, 40), // 마커이미지의 크기입니다
+    imageOption = { offset: new kakao.maps.Point(20, 40) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
-    const marker = new kakao.maps.Marker({
-      position: coords,
-      image: markerImage
-    });
-    marker.setMap(map);
+  // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+  const markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
 
-    kakao.maps.event.addListener(marker, 'click', function () {
-      // 레벨 설정 및 좌표 중심으로 이동
-      map.setLevel(3);
-      map.setCenter(coords);
-    });
+  const marker = new kakao.maps.Marker({
+    position: coords,
+    image: markerImage
+  });
+  marker.setMap(map);
+
+  kakao.maps.event.addListener(marker, 'click', function () {
+    // 레벨 설정 및 좌표 중심으로 이동
     map.setLevel(3);
     map.setCenter(coords);
-    const content =
-      `<div class="customoverlay" style="color:orange; border: 1px solid orange; background-color:white; padding: 8px; border-radius: 30px; margin-top:-75px; 
-      ">` +
-      title +
-      ` </div>`;
-
-    // 커스텀 오버레이가 표시될 위치입니다
-
-    const customOverlay = new kakao.maps.CustomOverlay({
-      position: coords,
-      content: content
-    });
-
-    customOverlay.setMap(map);
   });
+  map.setLevel(3);
+  map.setCenter(coords);
+  const content =
+    `<div class="customoverlay" style="color:orange; border: 1px solid orange; background-color:white; padding: 8px; border-radius: 30px; margin-top:-75px; 
+      ">` +
+    title +
+    ` </div>`;
+
+  // 커스텀 오버레이가 표시될 위치입니다
+
+  const customOverlay = new kakao.maps.CustomOverlay({
+    position: coords,
+    content: content
+  });
+
+  customOverlay.setMap(map);
+  return marker;
 };
 
 const MainMap = ({ list, area, category }) => {
@@ -91,23 +92,18 @@ const MainMap = ({ list, area, category }) => {
         //추가한 코드
         // 주소로 좌표를 검색합니다
 
-        makeNewMarker(map, position.title, position.address);
-        addressToCoords(map, position.title, position.address).then((coords) => {
+        const marker = makeNewMarker(map, position.title, position.address);
+        marker.then((item) => {
+          kakao.maps.event.addListener(item, 'click', function () {
+            listOnclickHandler(position);
+          });
+        });
+
+        addressToCoords(position.address).then((coords) => {
           bounds.extend(coords); //추가한 코드, 현재 코드에서 좌표정보는 point[i]가 아닌 markerPosition이다.
-          setBounds(coords);
           map.setBounds(bounds);
         });
       });
-
-      const setBounds = (coords) => {
-        //추가한 함수
-        // LatLngBounds 객체에 추가된 좌표들을 기준으로 지도의 범위를 재설정합니다
-        // 이때 지도의 중심좌표와 레벨이 변경될 수 있습니다
-        bounds.extend(coords);
-        // console.log('bounds', map.getBounds());
-        return bounds;
-        // map.setBounds(bounds);
-      };
     }
   }, [filteredData]);
 

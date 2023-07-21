@@ -4,18 +4,28 @@ import usePlaceData from '../../hook/usePlaceData';
 import { useDispatch } from 'react-redux';
 import { setDetailModalData, setDetailModalOn } from '../../redux/modules/modalSlice';
 import { makeNewMap, makeNewMarker } from '../MainMap/MainMap';
+const { kakao } = window;
 
 const PlaceList = ({ list, area, category }) => {
   const [filteredData] = usePlaceData(list, area, category);
 
   const dispatch = useDispatch();
 
-  const listOnclickHandler = (item) => {
+  const openModal = (item) => {
     dispatch(setDetailModalData(item));
     dispatch(setDetailModalOn(true));
+  };
+
+  const listOnclickHandler = (item) => {
+    openModal(item);
 
     const map = makeNewMap();
-    makeNewMarker(map, item.title, item.address);
+    const marker = makeNewMarker(map, item.title, item.address);
+    marker.then((mark) => {
+      kakao.maps.event.addListener(mark, 'click', function () {
+        openModal(item);
+      });
+    });
   };
 
   return (
