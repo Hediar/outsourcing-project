@@ -64,6 +64,7 @@ const WeatherModal = () => {
           );
         })}
       </S.WeatherModalContainer>
+      <S.Bg onClick={CloseModal}></S.Bg>
     </>
   );
 
@@ -104,7 +105,6 @@ const WeatherModal = () => {
   //       </div>
   //     </S.WeatherModalContainer>
   //     <S.DetailCloseBtn onClick={CloseModal}>X</S.DetailCloseBtn>
-  //     <S.Bg onClick={CloseModal}></S.Bg>
   //   </S.Container>
   // );
 };
