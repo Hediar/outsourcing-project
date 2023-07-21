@@ -5,6 +5,7 @@ import useIntersectionObserver from '../../hook/useIntersectionObserver';
 import { useSelector } from 'react-redux';
 import BlogCard from './BlogCard';
 import { S } from './BlogStyled';
+import Loading from '../Loading/Loading';
 
 const ShowBlogList = () => {
   const [page, setPage] = useState(1);
@@ -65,7 +66,7 @@ const ShowBlogList = () => {
   }, [page]);
 
   if (isLoading) {
-    return <div>로딩중..</div>;
+    return <Loading />;
   }
 
   if (isError) {

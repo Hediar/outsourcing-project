@@ -2,23 +2,24 @@ import React from 'react';
 import { get5DaysOfWeather } from '../../api/weather';
 import { useQuery } from 'react-query';
 import { styled } from 'styled-components';
+import Loading from '../Loading/Loading';
 
 const WeatherModal = () => {
   const { data, isError, isLoading } = useQuery('5DaysOfWeather', get5DaysOfWeather, {
     onSuccess: () => {
-      console.log('성공', data);
+      // console.log('성공', data);
     }
   });
 
   if (isLoading) {
-    return <h1>Loading..</h1>;
+    return <Loading />;
   }
   if (isError) {
     return <h1>Error..</h1>;
   }
   const everyDays = data.list.map((item) => item.dt_txt.substr(0, 10));
   const days = [...new Set(everyDays)];
-  console.log('days', days);
+  // console.log('days', days);
 
   const firstDayData = [];
   const secondDayData = [];
@@ -56,12 +57,12 @@ const WeatherModal = () => {
 
   const tempMax = (a) => {
     const numOnlyArr = a.filter((item) => typeof item == 'number');
-    console.log(numOnlyArr);
+    // console.log(numOnlyArr);
     return Math.round((Math.max(...numOnlyArr) - 273.15) * 10) / 10;
   };
   const tempMin = (b) => {
     const numOnlyArr = b.filter((item) => typeof item == 'number');
-    console.log(numOnlyArr);
+    // console.log(numOnlyArr);
     return Math.round((Math.min(...numOnlyArr) - 273.15) * 10) / 10;
   };
 
