@@ -55,7 +55,7 @@ const S = {
   Container: styled.div`
     width: 200px;
     position: absolute;
-    left: 75px;
+    right: 3%;
   `,
   WeatherBox: styled.div`
     cursor: pointer;
