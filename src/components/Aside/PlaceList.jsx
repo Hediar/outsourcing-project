@@ -38,7 +38,7 @@ const PlaceList = ({ list, area, category, setArea }) => {
     <S.ListBox>
       {filteredData?.map((item) => {
         return (
-          <S.ListItem key={item.id} onClick={() => listOnclickHandler(item)} img={item.detail.imageURL}>
+          <S.ListItem key={item.id} onClick={() => listOnclickHandler(item)} $backgroundSource={item.detail.imageURL}>
             <S.ListTitle>{item.title}</S.ListTitle>
           </S.ListItem>
         );
