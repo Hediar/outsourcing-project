@@ -71,6 +71,7 @@ const WeatherModal = () => {
         })}
       </S.WeatherModalContainer>
       <S.Bg onClick={CloseModal}></S.Bg>
+      <S.Bg onClick={CloseModal}></S.Bg>
     </>
   );
 };
