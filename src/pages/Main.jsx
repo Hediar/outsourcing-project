@@ -8,6 +8,7 @@ import MainMap from '../components/MainMap/MainMap';
 import DetailBox from '../components/Detail/DetailBox';
 import { useSelector } from 'react-redux';
 import Header from '../components/Header/Header';
+import WeatherModal from '../components/Header/WeatherModal';
 
 const Main = () => {
   const [area, setArea] = useState('전체');
@@ -15,7 +16,9 @@ const Main = () => {
 
   const { data, isLoading, isError } = useQuery('placeList', getPlaceList);
 
-  const { detailModalOn } = useSelector((state) => state).detailModal;
+  const { detailModalOn } = useSelector((state) => state.detailModal);
+  const { weatherModalOn } = useSelector((state) => state.detailModal);
+  console.log(weatherModalOn);
 
   if (isLoading) {
     return <div>로딩중</div>;
@@ -37,6 +40,8 @@ const Main = () => {
           </S.Aside>
           {detailModalOn ? <DetailBox /> : null}
         </S.AsideContainer>
+        {weatherModalOn ? <WeatherModal /> : null}
+
         <MainMap list={data} area={area} category={category}></MainMap>
       </S.Container>
     </>

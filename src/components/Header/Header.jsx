@@ -1,11 +1,13 @@
 import React from 'react';
 import { styled } from 'styled-components';
 import Weather from './Weather';
+import { useDispatch } from 'react-redux';
 
 const Header = ({ setArea }) => {
   const changeAreaButtonHandler = (selectedArea) => {
     setArea(selectedArea);
   };
+
   return (
     <S.Header>
       <S.Logo />
