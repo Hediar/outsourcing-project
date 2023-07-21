@@ -1,15 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DetailInfor from './DetailInfor';
 import ShowBlogList from '../Blog/ShowBlogList';
 import { css, styled } from 'styled-components';
 import ShowYtbList from '../Youtube/ShowYtbList';
+import { useSelector } from 'react-redux';
 
 const DetailTab = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const { title } = useSelector((state) => state.detailModal.detailModalData);
 
   const tabClickHandler = (idx) => {
     setActiveIndex(idx);
   };
+
+  useEffect(() => {
+    setActiveIndex(0);
+  }, [title]);
 
   const tabContentArr = [
     {
