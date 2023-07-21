@@ -19,8 +19,6 @@ const BlogCard = ({ item }) => {
             </S.BlogInfoBox>
           </S.InfoBox>
         </S.ContentBox>
-        {/* <p>{item.blogname}</p> */}
-        {/* <p>{item.datetime.slice(0, 10)}</p> */}
       </S.BlogContainer>
     </S.ContentLink>
   );

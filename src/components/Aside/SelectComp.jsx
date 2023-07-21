@@ -25,7 +25,7 @@ const customStyles = {
     textAlign: 'center',
     '&:hover': {
       border: '1px solid orange',
-      backgroundColor: 'white'
+      backgroundColor: 'orange'
     }
   }),
   control: (provided) => ({
@@ -65,6 +65,7 @@ const SelectComp = ({ area, setArea, category, setCategory }) => {
       <S.StyledSelect
         onChange={(e) => setCategory(e.value)}
         placeholder="카테고리를 선택하세요."
+        isSearchable={false}
         options={categoryOption}
         value={categoryOption.filter((option) => {
           return option.value === category;

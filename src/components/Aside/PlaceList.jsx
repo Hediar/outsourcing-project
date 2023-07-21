@@ -113,7 +113,6 @@ const S = {
       transform: scale(1.1);
       color: white;
       box-shadow: 0px 3px 3px 2px rgba(0, 0, 0, 0.1);
-      margin: 30px 40px;
       position: relative;
       background-image: url(${(props) => props.img});
       background-position: center;

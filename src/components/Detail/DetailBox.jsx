@@ -24,17 +24,17 @@ const DetailBox = () => {
       case 'restaurant':
         return (
           <>
-            <MdFlag color="white" />
+            <MdRestaurant color="white" />
             <S.SubTitleText>RESTAURANT</S.SubTitleText>
-            <MdFlag color="white" />
+            <MdRestaurant color="white" />
           </>
         );
       case 'tourSpot':
         return (
           <>
-            <MdRestaurant color="white" />
+            <MdFlag color="white" />
             <S.SubTitleText>TOUR SPOT</S.SubTitleText>
-            <MdRestaurant color="white" />
+            <MdFlag color="white" />
           </>
         );
       default:
