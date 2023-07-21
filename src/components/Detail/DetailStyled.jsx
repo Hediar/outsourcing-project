@@ -46,7 +46,7 @@ const S = {
   Img: styled.div`
     width: 430px;
     height: 250px;
-    background-image: url(${(props) => props.image});
+    background-image: url(${(props) => props.$image});
     background-position: center;
     background-size: cover;
     border-radius: 10px;
@@ -111,7 +111,7 @@ const S = {
     color: orange;
     background-color: white;
     ${(props) =>
-      props.select === 'Y' &&
+      props.$select === 'Y' &&
       css`
         background-color: orange;
         font-weight: bold;

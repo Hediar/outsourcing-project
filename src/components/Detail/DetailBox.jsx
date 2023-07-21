@@ -54,7 +54,7 @@ const DetailBox = () => {
         <S.DetailCloseBtn onClick={CloseModal}>X</S.DetailCloseBtn>
         <S.DetailBoxContainer>
           <S.DetailInfoBox>
-            <S.Img image={detailModalData.detail?.imageURL} />
+            <S.Img $image={detailModalData.detail?.imageURL} />
             <S.TitleArea>
               <S.PlaceTitle>{detailModalData.title}</S.PlaceTitle>
               <S.SubTitleArea>
