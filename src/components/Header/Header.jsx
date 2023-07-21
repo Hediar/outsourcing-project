@@ -6,6 +6,7 @@ const Header = ({ setArea }) => {
   const changeAreaButtonHandler = (selectedArea) => {
     setArea(selectedArea);
   };
+
   return (
     <S.Header>
       <S.Logo />

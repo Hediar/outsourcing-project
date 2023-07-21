@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   detailModalData: [],
-  detailModalOn: false
+  detailModalOn: false,
+  weatherModalOn: false
 };
 
 const detailModalSlice = createSlice({
@@ -14,9 +15,12 @@ const detailModalSlice = createSlice({
     },
     setDetailModalOn: (state, action) => {
       state.detailModalOn = action.payload;
+    },
+    setWeatherModalOn: (state, action) => {
+      state.weatherModalOn = action.payload;
     }
   }
 });
 
 export default detailModalSlice.reducer;
-export const { setDetailModalData, setDetailModalOn } = detailModalSlice.actions;
+export const { setDetailModalData, setDetailModalOn, setWeatherModalOn } = detailModalSlice.actions;

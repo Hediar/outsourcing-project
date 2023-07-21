@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import { styled } from 'styled-components';
 import { getcurrentWeather } from '../../api/weather';
+import { useDispatch, useSelector } from 'react-redux';
+import { setWeatherModalOn } from '../../redux/modules/modalSlice';
 
 const Weather = () => {
+  const dispatch = useDispatch();
   const [icon, setIcon] = useState('');
 
   const { data, isError, isLoading } = useQuery('currentWeather', getcurrentWeather, {
@@ -12,6 +15,9 @@ const Weather = () => {
     },
     refetchOnWindowFocus: false
   });
+
+  const { weatherModalOn } = useSelector((state) => state.detailModal);
+  console.log(weatherModalOn);
 
   if (isLoading) {
     return <h1>Loading..</h1>;
@@ -24,7 +30,11 @@ const Weather = () => {
     <>
       <S.Container>
         {Object.keys(data).length !== 0 && (
-          <S.WeatherBox>
+          <S.WeatherBox
+            onClick={() => {
+              dispatch(setWeatherModalOn(!weatherModalOn));
+            }}
+          >
             <S.WeatherTextBox>
               <S.WeatherCityName>{(data?.name).substr(0, 5)}</S.WeatherCityName>
               <S.WeatherTemp>{Math.round((data?.main.temp - 273.15) * 10) / 10}°C</S.WeatherTemp>
@@ -48,6 +58,7 @@ const S = {
     left: 75px;
   `,
   WeatherBox: styled.div`
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
