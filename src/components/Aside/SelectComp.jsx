@@ -1,6 +1,5 @@
 import React from 'react';
-import Select from 'react-select';
-import { styled } from 'styled-components';
+import { S } from './AsideStyled';
 
 let areaOption = [
   { value: '전체', label: '전체' },
@@ -74,15 +73,6 @@ const SelectComp = ({ area, setArea, category, setCategory }) => {
       />
     </S.SelectBox>
   );
-};
-
-const S = {
-  SelectBox: styled.div`
-    width: 80%;
-  `,
-  StyledSelect: styled(Select)`
-    color: white;
-  `
 };
 
 export default SelectComp;

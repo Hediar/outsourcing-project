@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import DetailInfor from './DetailInfor';
 import ShowBlogList from '../Blog/ShowBlogList';
-import { css, styled } from 'styled-components';
 import ShowYtbList from '../Youtube/ShowYtbList';
 import { useSelector } from 'react-redux';
+import { S } from './DetailStyled';
 
 const DetailTab = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -67,59 +67,6 @@ const DetailTab = () => {
       <S.TapContentArea>{tabContentArr[activeIndex].tabContent}</S.TapContentArea>
     </S.Container>
   );
-};
-
-const S = {
-  Container: styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  `,
-  TabArea: styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0px 8px 10px -4px rgba(0, 0, 0, 0.2);
-  `,
-  TabMenu: styled.div`
-    width: 500px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  `,
-  TapContentArea: styled.div`
-    padding-top: 10px;
-    height: calc(100vh - 448px);
-    overflow-y: scroll;
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  `,
-  TabContent: styled.div`
-    flex-grow: 1;
-    float: left;
-    text-align: center;
-    cursor: pointer;
-    padding: 10px 0;
-    transition: 0.2s;
-    border: 1px solid orange;
-    box-sizing: border-box;
-    color: orange;
-    background-color: white;
-    ${(props) =>
-      props.select === 'Y' &&
-      css`
-        background-color: orange;
-        font-weight: bold;
-        color: white;
-      `}
-    &:hover {
-      transform: scale(1.1);
-    }
-    &:active {
-      transform: scale(1);
-    }
-  `
 };
 
 export default DetailTab;
