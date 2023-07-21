@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import { css, styled } from 'styled-components';
 import Select from 'react-select';
 
 const S = {
@@ -67,6 +67,30 @@ const S = {
     &:active {
       transform: scale(1);
     }
+
+    ${(props) =>
+      props.isSelected &&
+      css`
+        font-weight: bold;
+        transform: scale(1.1);
+        color: white;
+        box-shadow: 0px 3px 3px 2px rgba(0, 0, 0, 0.1);
+        position: relative;
+        background-image: url(${(props) => props.img});
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+
+        &::before {
+          content: '';
+          background-color: rgba(255, 165, 0, 0.9);
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+        }
+      `}
   `,
   ListEmptyBox: styled.div`
     height: 100px;
