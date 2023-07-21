@@ -10,10 +10,9 @@ const S = {
     box-sizing: border-box;
   `,
   Logo: styled.div`
-    position: fixed;
-    left: 50%;
-    top: 35px;
-    transform: translate(-50%, -50%);
+    position: absolute;
+    left: 100px;
+    top: 20%;
     width: 150px;
     height: 30px;
     background-image: url('https://velog.velcdn.com/images/lhb971219/post/c42592a0-754a-43d9-85fc-3a4287975ab6/image.png');
@@ -21,10 +20,11 @@ const S = {
     background-position: center;
   `,
   SelectButtons: styled.div`
+    position: fixed;
+    left: 50%;
+    top: 35px;
+    transform: translate(-50%, -50%);
     display: flex;
-    position: absolute;
-    right: 3%;
-    top: 20%;
   `,
   ButtonStyle: styled.button`
     cursor: pointer;
