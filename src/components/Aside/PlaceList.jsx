@@ -2,8 +2,8 @@ import React from 'react';
 import usePlaceData from '../../hook/usePlaceData';
 import { useDispatch } from 'react-redux';
 import { setDetailModalData, setDetailModalOn } from '../../redux/modules/modalSlice';
-import { makeNewMap, makeNewMarker } from '../MainMap/MainMap';
 import { S } from './AsideStyled';
+import { makeNewMap, makeNewMarker } from '../MainMap/MapFunction';
 const { kakao } = window;
 
 const PlaceList = ({ list, area, category }) => {
