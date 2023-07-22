@@ -25,11 +25,18 @@ const S = {
     width: 100%;
     height: 100%;
     padding: 30px 0;
+    /* color: white; */
     position: relative;
     &:hover {
       font-weight: 700;
       color: white;
     }
+
+    ${(props) =>
+      props.isSelected &&
+      css`
+        color: white;
+      `}
   `,
   ListItem: styled.div`
     display: block;
@@ -49,7 +56,7 @@ const S = {
       color: white;
       box-shadow: 0px 3px 3px 2px rgba(0, 0, 0, 0.1);
       position: relative;
-      background-image: url(${(props) => props.$backgroundSource});
+      background-image: url(${(props) => props.img});
       background-position: center;
       background-size: cover;
       background-repeat: no-repeat;

@@ -48,7 +48,7 @@ const PlaceList = ({ list, area, category, setArea }) => {
             img={item.detail.imageURL}
             isSelected={item.title === modalTitle && modalState}
           >
-            <S.ListTitle>{item.title}</S.ListTitle>
+            <S.ListTitle isSelected={item.title === modalTitle && modalState}>{item.title}</S.ListTitle>
           </S.ListItem>
         );
       })}
