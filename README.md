@@ -25,8 +25,10 @@
 | 메인페이지 |
 | :--------: | 
 |      ![image](https://github.com/Hediar/outsourcing-project/assets/72387948/7b08fdb9-5a21-4222-b0b4-19478f0d738f)       |
-|     모달창       |    날씨    |
-|        ![image](https://github.com/Hediar/outsourcing-project/assets/72387948/452be99c-d90e-4b66-8ee8-5651da70c2c0)           |     ![image](https://github.com/Hediar/outsourcing-project/assets/72387948/772389e7-78ea-4889-9534-2390233037e0)      |
+|     모달창       |
+|        ![image](https://github.com/Hediar/outsourcing-project/assets/72387948/452be99c-d90e-4b66-8ee8-5651da70c2c0)           |     
+    날씨    |
+![image](https://github.com/Hediar/outsourcing-project/assets/72387948/772389e7-78ea-4889-9534-2390233037e0)      |
 
 ---
 
