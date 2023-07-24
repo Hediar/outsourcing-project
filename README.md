@@ -6,6 +6,8 @@
 
 ### 개요도
 
+![image](https://github.com/Hediar/outsourcing-project/assets/72387948/a01bf863-9049-4af1-9eee-a73a85cf24c2)
+
 ## Stacks
 
 ### Environment
@@ -44,6 +46,7 @@
 
 - 목록에서 요소를 클릭하거나 마커를 클릭할 경우 정보가 나타나는 모달창을 확인할 수 있습니다.
 - 각각의 모달 창에서 상세정보, 블로그, 관련 인기 동영상을 확인할 수 있습니다.
+
 
 ### 날씨
 
