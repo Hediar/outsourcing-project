@@ -10,10 +10,10 @@ const S = {
   // ----------------------
   // DetailBox.jsx
   MotionBox: styled.div`
-    left: 350px;
     width: 500px;
     /* position: fixed; */
     position: absolute;
+    left: -150px;
     background-color: white;
     z-index: 2;
   `,
