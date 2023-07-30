@@ -19,8 +19,7 @@ const Main = () => {
     staleTime: Infinity
   });
 
-  const { detailModalOn } = useSelector((state) => state.detailModal);
-  const { weatherModalOn } = useSelector((state) => state.detailModal);
+  const { detailModalOn, weatherModalOn } = useSelector((state) => state.detailModal);
 
   if (isLoading) {
     return <Loading />;
