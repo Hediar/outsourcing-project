@@ -10,6 +10,7 @@ const { kakao } = window;
 const MainMap = ({ list, area, category }) => {
   const [map, setMap] = useState(null);
   const [filteredData] = usePlaceData(list, area, category);
+
   const dispatch = useDispatch();
 
   const listOnclickHandler = (item) => {

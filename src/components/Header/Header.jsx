@@ -15,7 +15,8 @@ const Header = ({ setArea }) => {
   const logoOnclickHandler = () => {
     dispatch(setDetailModalOn(false));
     dispatch(setWeatherModalOn(false));
-    setArea('전체');
+    // setArea('전체');
+    window.location.reload();
   };
 
   return (
@@ -23,7 +24,7 @@ const Header = ({ setArea }) => {
       <S.Logo onClick={logoOnclickHandler} />
       <Weather />
       <S.SelectButtons>
-        <S.ButtonStyle onClick={(e) => changeAreaButtonHandler(e.target.innerText)}>전체</S.ButtonStyle>
+        <S.ButtonStyle onClick={() => window.location.reload()}>전체</S.ButtonStyle>
         <S.ButtonStyle onClick={(e) => changeAreaButtonHandler(e.target.innerText)}>조천</S.ButtonStyle>
         <S.ButtonStyle onClick={(e) => changeAreaButtonHandler(e.target.innerText)}>애월</S.ButtonStyle>
         <S.ButtonStyle onClick={(e) => changeAreaButtonHandler(e.target.innerText)}>안덕</S.ButtonStyle>

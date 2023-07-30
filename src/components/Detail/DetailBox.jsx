@@ -7,15 +7,15 @@ import { MdRestaurant, MdCoffee, MdFlag } from 'react-icons/md';
 import { S } from './DetailStyled';
 
 const DetailBox = () => {
-  const boxRef = useRef(null);
+  const boxRef = useRef();
   const { detailModalData } = useSelector((state) => state.detailModal);
   const dispatch = useDispatch();
   useEffect(() => {
-    gsap.from(boxRef.current, 0.3, { transform: 'translateX(-500px)', delay: 0, ease: 'ease' });
+    gsap.to(boxRef.current, { left: '350px', autoAlpha: 1, delay: 0, ease: 'ease' });
   }, []);
 
   const CloseModal = async () => {
-    await gsap.to(boxRef.current, 0.3, { transform: 'translateX(-500px)', delay: 0, ease: 'ease' });
+    await gsap.to(boxRef.current, { transform: 'translateX(-500px)', delay: 0, ease: 'ease' });
     dispatch(setDetailModalOn(false));
   };
 

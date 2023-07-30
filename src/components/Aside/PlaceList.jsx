@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import usePlaceData from '../../hook/usePlaceData';
 import { useDispatch, useSelector } from 'react-redux';
 import { setDetailModalData, setDetailModalOn } from '../../redux/modules/modalSlice';
@@ -19,13 +19,6 @@ const PlaceList = ({ list, area, category, setArea }) => {
   };
 
   const listOnclickHandler = (item) => {
-    if (item.areaid === 'Aewol') {
-      setArea('애월');
-    } else if (item.areaid === 'Andeok') {
-      setArea('안덕');
-    } else {
-      setArea('조천');
-    }
     openModal(item);
     const map = makeNewMap();
     const marker = makeNewMarker(map, item.title, item.address);
