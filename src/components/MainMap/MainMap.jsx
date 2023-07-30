@@ -4,12 +4,15 @@ import { useDispatch } from 'react-redux';
 import { setDetailModalData, setDetailModalOn } from '../../redux/modules/modalSlice';
 import { S } from './MainMapStyled';
 import { addressToCoords, makeNewMap, makeNewMarker } from './MapFunction';
+import { useSelector } from 'react-redux';
 
 const { kakao } = window;
 
 const MainMap = ({ list, area, category }) => {
   const [map, setMap] = useState(null);
   const [filteredData] = usePlaceData(list, area, category);
+  const modalData = useSelector((state) => state.detailModal.detailModalData);
+
   const dispatch = useDispatch();
 
   const listOnclickHandler = (item) => {
