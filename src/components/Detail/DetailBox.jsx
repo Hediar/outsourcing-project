@@ -11,7 +11,7 @@ const DetailBox = () => {
   const { detailModalData } = useSelector((state) => state.detailModal);
   const dispatch = useDispatch();
   useEffect(() => {
-    gsap.from(boxRef.current, { transform: 'translateX(-500px)', delay: 0, ease: 'ease' });
+    gsap.to(boxRef.current, { left: '350px', autoAlpha: 1, delay: 0, ease: 'ease' });
   }, []);
 
   const CloseModal = async () => {
